@@ -134,11 +134,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="7dp"
-
                         app:srcCompat="@drawable/location" />
 
                     <Spinner
-                        android:id="@+id/spinner"
+                        android:id="@+id/locationSp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -161,7 +160,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="7dp"
-
                         app:srcCompat="@drawable/time" />
 
                     <Spinner
@@ -169,7 +167,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-
                         android:layout_gravity="center_vertical"
                         android:background="@null" />
                 </LinearLayout>
@@ -189,17 +186,15 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="7dp"
-
                         app:srcCompat="@drawable/dollar" />
 
                     <Spinner
-                       android:id="@+id/priceSp"
+                        android:id="@+id/priceSp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
-                        android:background="@null"
-                        />
+                        android:background="@null" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -234,7 +229,7 @@
                 android:layout_height="300dp">
 
                 <ProgressBar
-                    android:id="@+id/progressBar"
+                    android:id="@+id/progressBarBestFood"
                     style="?android:attr/progressBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -265,6 +260,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:background="@color/gray"
                 android:layout_height="match_parent">
 
                 <ProgressBar
@@ -273,14 +269,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="@+id/rcvCategoryFood"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toEndOf="@+id/rcvCategoryFood"
+                    app:layout_constraintStart_toStartOf="@+id/rcvCategoryFood"
+                    app:layout_constraintTop_toTopOf="@+id/rcvCategoryFood" />
 
                 <androidx.recyclerview.widget.RecyclerView
+
                     android:id="@+id/rcvCategoryFood"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="200dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
