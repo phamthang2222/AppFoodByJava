@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AppFoodProject</string>
+    <string name="Location">LOCATION</string>
+    <string name="Foods">FOODS</string>
+    <string name="Category">CATEGORY</string>
+    <string name="Price">PRICE</string>
+    <string name="Time">TIME</string>
 </resources>
