@@ -2,13 +2,13 @@ package vn.phamthang.appfoodproject.Domain;
 
 public class Category {
     private int id;
-    private String imagePath;
-    private String name;
+    private String ImagePath;
+    private String Name;
 
     public Category(int id, String imagePath, String name) {
         this.id = id;
-        this.imagePath = imagePath;
-        this.name = name;
+        this.ImagePath = imagePath;
+        this.Name = name;
     }
 
     public Category() {
@@ -23,18 +23,18 @@ public class Category {
     }
 
     public String getImagePath() {
-        return imagePath;
+        return ImagePath;
     }
 
     public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+        this.ImagePath = imagePath;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
 }

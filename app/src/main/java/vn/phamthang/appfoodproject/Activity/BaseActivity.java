@@ -11,7 +11,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import vn.phamthang.appfoodproject.R;
 
 public class BaseActivity extends AppCompatActivity {
-
+    public static final String FOODS = "Foods";
+    public static final String LOCATION = "Location";
+    public static final String TIME = "Time";
+    public static final String PRICE = "Price";
+    public static final String CATEGORY = "Category";
     FirebaseAuth mAuth;
     FirebaseDatabase database;
 

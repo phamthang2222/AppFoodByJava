@@ -1,23 +1,23 @@
 package vn.phamthang.appfoodproject.Domain;
 
 public class Price {
-    private int id;
+    private int Id;
     private String Value;
 
     public Price() {
     }
 
     public Price(int id, String value) {
-        this.id = id;
+        this.Id = id;
         this.Value = value;
     }
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getValue() {

@@ -1,31 +1,31 @@
 package vn.phamthang.appfoodproject.Domain;
 
 public class Location {
-    private int id;
-    private String loc;
+    private int Id;
+    private String Loc;
 
 
     public Location() {
     }
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getLoc() {
-        return loc;
+        return Loc;
     }
 
     public void setLoc(String loc) {
-        this.loc = loc;
+        this.Loc = loc;
     }
 
     @Override
     public String toString() {
-        return loc;
+        return Loc;
     }
 }
