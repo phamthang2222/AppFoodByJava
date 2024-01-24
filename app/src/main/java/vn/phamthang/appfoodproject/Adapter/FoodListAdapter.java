@@ -1,6 +1,7 @@
 package vn.phamthang.appfoodproject.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 
 import java.util.ArrayList;
 
+import vn.phamthang.appfoodproject.Activity.DetailActivity;
 import vn.phamthang.appfoodproject.Domain.Foods;
 import vn.phamthang.appfoodproject.R;
 
@@ -45,6 +47,12 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.viewHo
                 .load(items.get(position).getImagePath())
                 .transform(new CenterCrop(),new RoundedCorners(30))
                 .into(holder.imgPicFood);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("object",items.get(position));
+            context.startActivity(intent);
+        });
 
     }
 

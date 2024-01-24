@@ -14,7 +14,10 @@
         android:theme="@style/Theme.AppFoodProject"
         tools:targetApi="31">
         <activity
-            android:name=".DetailActivity"
+            android:name=".Activity.CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.DetailActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.ListFoodActivity"
