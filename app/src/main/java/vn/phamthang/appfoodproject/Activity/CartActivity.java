@@ -1,6 +1,5 @@
 package vn.phamthang.appfoodproject.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,8 +8,7 @@ import android.view.View;
 
 import vn.phamthang.appfoodproject.Adapter.CartAdapter;
 import vn.phamthang.appfoodproject.Helper.ManagmentCart;
-import vn.phamthang.appfoodproject.Interface.ChangeNumberItemsListener;
-import vn.phamthang.appfoodproject.R;
+import vn.phamthang.appfoodproject.Helper.ChangeNumberItemsListener;
 import vn.phamthang.appfoodproject.databinding.ActivityCartBinding;
 
 public class CartActivity extends BaseActivity {
@@ -41,7 +39,7 @@ public class CartActivity extends BaseActivity {
             binding.tvEmpty.setVisibility(View.GONE);
             binding.scrollViewCart.setVisibility(View.VISIBLE);
         }
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
         binding.rcvCartView.setLayoutManager(linearLayoutManager);
         adapter = new CartAdapter(managmentCart.getListCart(), this, new ChangeNumberItemsListener() {
             @Override
@@ -61,8 +59,8 @@ public class CartActivity extends BaseActivity {
         double itemTotal = Math.round((managmentCart.getTotalFee())*100.0)/100.0;
 
         binding.tvTotalFree.setText("$"+itemTotal);
-        binding.tvDelivery.setText("$"+tax+" ("+percentTax*100+"%)");
-        binding.tvTax.setText(percentTax*100+"%");
+        binding.tvDelivery.setText("$"+delivery);
+        binding.tvTax.setText("$"+tax+" ("+percentTax*100+"%)");
         binding.tvTotalCart.setText("$"+total);
     }
 

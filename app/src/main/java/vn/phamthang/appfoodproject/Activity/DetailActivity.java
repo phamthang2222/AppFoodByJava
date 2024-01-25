@@ -58,11 +58,14 @@ public class DetailActivity extends BaseActivity {
 
         binding.btAddToCart.setOnClickListener(v -> {
             object.setNumberInCart(num);
+            managmentCart.insertFood(object);
 
         });
     }
     private void getIntentExtrax() {
         object = (Foods) getIntent().getSerializableExtra("object");
-//        managmentCart.insertFood(object);
+        if(managmentCart != null){
+            managmentCart.insertFood(object);
+        }
     }
 }

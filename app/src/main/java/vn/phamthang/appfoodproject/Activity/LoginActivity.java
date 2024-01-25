@@ -63,5 +63,14 @@ public class LoginActivity extends BaseActivity {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
+        binding.btFbLogin.setOnClickListener(v -> {
+            Toast.makeText(this, "Chưa hỗ trợ", Toast.LENGTH_SHORT).show();
+        });
+        binding.btGgLogin.setOnClickListener(v -> {
+            Toast.makeText(this, "Chưa hỗ trợ", Toast.LENGTH_SHORT).show();
+        });
+        binding.btTwLogin.setOnClickListener(v -> {
+            Toast.makeText(this, "Chưa hỗ trợ", Toast.LENGTH_SHORT).show();
+        });
     }
 }

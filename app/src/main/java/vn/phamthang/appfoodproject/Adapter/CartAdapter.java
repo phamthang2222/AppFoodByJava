@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import vn.phamthang.appfoodproject.Domain.Foods;
 import vn.phamthang.appfoodproject.Helper.ManagmentCart;
-import vn.phamthang.appfoodproject.Interface.ChangeNumberItemsListener;
+import vn.phamthang.appfoodproject.Helper.ChangeNumberItemsListener;
 import vn.phamthang.appfoodproject.R;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder> {
@@ -44,9 +44,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder> {
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.viewHolder holder, int position) {
         holder.tvTitle.setText(list.get(position).getTitle());
-        holder.tvPrice.setText("$"+list.get(position).getPrice());
-        holder.tvFeeEachItem.setText("$"+(list.get(position).getNumberInCart() *list.get(position).getPrice() ));
-        holder.tvQuantity.setText("$"+list.get(position).getNumberInCart());
+        holder.tvPriceInCart.setText("$"+list.get(position).getPrice());
+        holder.tvFeeItem.setText("$"+(list.get(position).getNumberInCart() *list.get(position).getPrice() ));
+        holder.tvQuantity.setText(""+list.get(position).getNumberInCart());
         Glide.with(holder.itemView.getContext())
                 .load(list.get(position).getImagePath())
                 .transform(new CenterCrop(), new RoundedCorners(30))
@@ -77,18 +77,18 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder> {
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvFeeEachItem, btMinus, btPlus, tvQuantity,tvPrice;
+        TextView tvTitle, tvFeeItem, btMinus, btPlus, tvQuantity,tvPriceInCart;
         ImageView imgItem;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitleInCart);
             imgItem = itemView.findViewById(R.id.imageView13);
-            tvPrice = itemView.findViewById(R.id.tvPriceInCart);
+            tvPriceInCart = itemView.findViewById(R.id.tvPriceInCart);
             btMinus = itemView.findViewById(R.id.btMinusInCardView);
             btPlus = itemView.findViewById(R.id.btPlusInCardView);
             tvQuantity = itemView.findViewById(R.id.tvQuantityInCardView);
-            tvFeeEachItem = itemView.findViewById(R.id.tvPriceInCart);
+            tvFeeItem = itemView.findViewById(R.id.tvFeeItem);
 
         }
     }
