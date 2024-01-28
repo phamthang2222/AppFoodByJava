@@ -78,7 +78,10 @@ public class MainActivity extends BaseActivity {
             Intent intent = new Intent(MainActivity.this,CartActivity.class);
             startActivity(intent);
         });
-
+        binding.imgAvtUser.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void initBestFood() {

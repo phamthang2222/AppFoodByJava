@@ -66,7 +66,7 @@ public class RegisterActivity extends BaseActivity {
                             // Lấy thông tin người dùng
                             String userId = firebaseUser.getUid();
 //                            String userEmail = firebaseUser.getEmail();
-                            User newUser = new User(userId, email, password,name,"Chưa cập nhật", "Chưa cập nhật");
+                            User newUser = new User(userId, email, password,name,null, null);
                             // Lưu thông tin người dùng vào database
                             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("User");
                             databaseReference.child(firebaseUser.getUid()).setValue(newUser);
