@@ -28,33 +28,22 @@ public class LoginActivity extends BaseActivity {
         setVariable();
     }
     private void setVariable() {
+        binding.edtEmail.setText("t1@gmail.com");
+        binding.edtPassword.setText("123456");
         binding.btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = binding.edtEmail.getText().toString();
-                String password = binding.edtEmail.getText().toString();
+                String password = binding.edtPassword.getText().toString();
                 if(email.isEmpty()){
                     binding.edtEmail.setError("Không được để trống!");
+                }else if(password.isEmpty()){
+                    binding.edtPassword.setError("Không được để trống!");
+                }else{
+                    binding.progressBarLogin.setVisibility(View.VISIBLE);
+                    signIn(email,password);
                 }
-                if(password.isEmpty()){
-                    binding.edtEmail.setError("Không được để trống!");
-                }
-                if(!email.isEmpty() && !password.isEmpty()){
-                    mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if( task.isComplete()){
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                finish();
-                                Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                Toast.makeText(LoginActivity.this, "Sai tên đăng nhập hoặc mật khẩu", Toast.LENGTH_SHORT).show();
-                            }
-                        }
 
-                    });
-                }
             }
         });
         binding.btRegister.setOnClickListener(new View.OnClickListener() {
@@ -72,5 +61,24 @@ public class LoginActivity extends BaseActivity {
         binding.btTwLogin.setOnClickListener(v -> {
             Toast.makeText(this, "Chưa hỗ trợ", Toast.LENGTH_SHORT).show();
         });
+    }
+    private void  signIn(String userName,String passWord ){
+        mAuth.signInWithEmailAndPassword(userName,passWord)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            binding.progressBarLogin.setVisibility(View.INVISIBLE);
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
+                            Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            binding.progressBarLogin.setVisibility(View.INVISIBLE);
+                            Toast.makeText(LoginActivity.this, "Sai tên đăng nhập hoặc mật khẩu", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
     }
 }

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +29,7 @@ import vn.phamthang.appfoodproject.Domain.Foods;
 import vn.phamthang.appfoodproject.Domain.Location;
 import vn.phamthang.appfoodproject.Domain.Price;
 import vn.phamthang.appfoodproject.Domain.Time;
+import vn.phamthang.appfoodproject.Domain.User;
 import vn.phamthang.appfoodproject.R;
 import vn.phamthang.appfoodproject.databinding.ActivityMainBinding;
 
@@ -40,6 +42,7 @@ public class MainActivity extends BaseActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        initUserNameCurent();
         initLocation();
         initTime();
         initPrice();
@@ -75,6 +78,7 @@ public class MainActivity extends BaseActivity {
             Intent intent = new Intent(MainActivity.this,CartActivity.class);
             startActivity(intent);
         });
+
     }
 
     private void initBestFood() {
@@ -197,5 +201,34 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+    }
+    private void initUserNameCurent(){
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            DatabaseReference myRef = database.getReference("User"); // Giả sử "users" là key cho dữ liệu người dùng trong database của bạn
+
+            // Truy vấn để tìm người dùng với UID phù hợp
+            Query query = myRef.orderByChild("id").equalTo(userId);
+
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        // Lấy giá trị của trường "username" từ nhánh con có UID tương ứng
+                        String username = snapshot.child(userId).child("userName").getValue(String.class);
+
+                       binding.tvUserName.setText(username);
+                       Log.d("TAG","onCreate: "+username);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // Xử lý lỗi, nếu có
+                }
+            });
+        }
+
     }
 }

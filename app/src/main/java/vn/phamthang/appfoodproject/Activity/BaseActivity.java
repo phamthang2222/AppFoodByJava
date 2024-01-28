@@ -16,6 +16,7 @@ public class BaseActivity extends AppCompatActivity {
     public static final String TIME = "Time";
     public static final String PRICE = "Price";
     public static final String CATEGORY = "Category";
+    public static final String USER = "User";
     FirebaseAuth mAuth;
     FirebaseDatabase database;
 
