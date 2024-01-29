@@ -30,4 +30,9 @@ public class BaseActivity extends AppCompatActivity {
 
         getWindow().setStatusBarColor(getResources().getColor(R.color.black));
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

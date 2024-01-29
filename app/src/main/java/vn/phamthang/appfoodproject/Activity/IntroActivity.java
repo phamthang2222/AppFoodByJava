@@ -7,10 +7,12 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import vn.phamthang.appfoodproject.Dialog.DialogConfirm;
 import vn.phamthang.appfoodproject.R;
 import vn.phamthang.appfoodproject.databinding.ActivityIntroBinding;
 
 public class IntroActivity extends BaseActivity {
+
 
     ActivityIntroBinding binding;
 
@@ -25,6 +27,8 @@ public class IntroActivity extends BaseActivity {
     }
 
     private void setVaribale() {
+
+
         binding.regisBtn.setOnClickListener(v -> {
             startActivity(new Intent(IntroActivity.this, RegisterActivity.class));
             finish();
@@ -41,4 +45,6 @@ public class IntroActivity extends BaseActivity {
             }
         });
     }
+
+
 }

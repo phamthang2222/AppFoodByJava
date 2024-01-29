@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import vn.phamthang.appfoodproject.Dialog.DialogConfirm;
 import vn.phamthang.appfoodproject.Domain.User;
 import vn.phamthang.appfoodproject.R;
 import vn.phamthang.appfoodproject.databinding.ActivityIntroBinding;
@@ -94,5 +95,7 @@ public class RegisterActivity extends BaseActivity {
             }
         });
     }
+
+
 
 }

@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 import vn.phamthang.appfoodproject.Adapter.BestFoodAdapter;
 import vn.phamthang.appfoodproject.Adapter.CategoryAdapter;
+import vn.phamthang.appfoodproject.Dialog.DialogConfirm;
 import vn.phamthang.appfoodproject.Domain.Category;
 import vn.phamthang.appfoodproject.Domain.Foods;
 import vn.phamthang.appfoodproject.Domain.Location;
@@ -35,6 +36,7 @@ import vn.phamthang.appfoodproject.databinding.ActivityMainBinding;
 
 public class MainActivity extends BaseActivity {
     private ActivityMainBinding binding;
+    private DialogConfirm dialogConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setVariable() {
+        dialogConfirm = new DialogConfirm(MainActivity.this);
         binding.btLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +84,7 @@ public class MainActivity extends BaseActivity {
         binding.imgAvtUser.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
             startActivity(intent);
+            finish();
         });
     }
 

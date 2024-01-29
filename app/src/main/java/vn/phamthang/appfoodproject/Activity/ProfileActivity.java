@@ -19,11 +19,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import vn.phamthang.appfoodproject.Dialog.DialogConfirm;
 import vn.phamthang.appfoodproject.Domain.User;
 import vn.phamthang.appfoodproject.R;
 import vn.phamthang.appfoodproject.databinding.ActivityProfileBinding;
 
 public class ProfileActivity extends BaseActivity {
+
+    private DialogConfirm dialogConfirm;
     ActivityProfileBinding binding;
     private String idUser="";
     @Override
@@ -36,6 +39,8 @@ public class ProfileActivity extends BaseActivity {
     }
 
     private void setVariable() {
+        dialogConfirm = new DialogConfirm(ProfileActivity.this);
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -72,7 +77,8 @@ public class ProfileActivity extends BaseActivity {
         }
 
         binding.btBack.setOnClickListener(v -> {
-            finish();
+            dialogConfirm.show();
+//            finish();
         });
 
         binding.btUpdate.setOnClickListener(v -> {
