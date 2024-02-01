@@ -69,7 +69,7 @@ public class BestFoodAdapter extends RecyclerView.Adapter<BestFoodAdapter.viewHo
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvPrice = itemView.findViewById(R.id.tvPrice);
-            tvStart = itemView.findViewById(R.id.tvStart);
+            tvStart = itemView.findViewById(R.id.tvStartInBestDeal);
             tvTime = itemView.findViewById(R.id.tvTime);
             pic = itemView.findViewById(R.id.imgItem);
 

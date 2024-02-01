@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import vn.phamthang.appfoodproject.Adapter.CartAdapter;
 import vn.phamthang.appfoodproject.Helper.ManagmentCart;
-import vn.phamthang.appfoodproject.Helper.ChangeNumberItemsListener;
+import vn.phamthang.appfoodproject.Interface.ChangeNumberItemsListener;
 import vn.phamthang.appfoodproject.databinding.ActivityCartBinding;
 
 public class CartActivity extends BaseActivity {
@@ -48,6 +48,7 @@ public class CartActivity extends BaseActivity {
     private void initList() {
         if(managmentCart.getListCart().isEmpty()){
             binding.tvEmpty.setVisibility(View.VISIBLE);
+            binding.scrollViewCart.setVisibility(View.GONE);
         }else{
             binding.tvEmpty.setVisibility(View.GONE);
             binding.scrollViewCart.setVisibility(View.VISIBLE);
@@ -94,7 +95,7 @@ public class CartActivity extends BaseActivity {
             String userId = currentUser.getUid();
             DatabaseReference myRef = database.getReference("User");
 
-            // Truy vấn để tìm người dùng với UID phù hợp
+            // truy vấn để tìm người dùng với UID phù hợp
             Query query = myRef.orderByChild("id").equalTo(userId);
 
             query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -115,10 +116,9 @@ public class CartActivity extends BaseActivity {
 
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    // Xử lý lỗi, nếu có
+
                 }
             });
         }

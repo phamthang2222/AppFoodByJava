@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
@@ -36,7 +37,6 @@ import vn.phamthang.appfoodproject.databinding.ActivityMainBinding;
 
 public class MainActivity extends BaseActivity {
     private ActivityMainBinding binding;
-    private DialogConfirm dialogConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +54,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    private void setVariable() {
-        dialogConfirm = new DialogConfirm(MainActivity.this);
+    private void setVariable() {;
         binding.btLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +84,12 @@ public class MainActivity extends BaseActivity {
             Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
             startActivity(intent);
             finish();
+        });
+        binding.btViewAll.setOnClickListener(v ->{
+            startActivity(new Intent(this,AllBestFoodActivity.class));
+        } );
+        binding.btWishList.setOnClickListener(v -> {
+            startActivity(new Intent(this,WishListActivity.class));
         });
     }
 
@@ -213,26 +218,19 @@ public class MainActivity extends BaseActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
-            DatabaseReference myRef = database.getReference("User"); // Giả sử "users" là key cho dữ liệu người dùng trong database của bạn
-
-            // Truy vấn để tìm người dùng với UID phù hợp
+            DatabaseReference myRef = database.getReference("User");
             Query query = myRef.orderByChild("id").equalTo(userId);
-
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
-                        // Lấy giá trị của trường "username" từ nhánh con có UID tương ứng
                         String username = snapshot.child(userId).child("userName").getValue(String.class);
-
                        binding.tvUserName.setText(username);
                        Log.d("TAG","onCreate: "+username);
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    // Xử lý lỗi, nếu có
                 }
             });
         }

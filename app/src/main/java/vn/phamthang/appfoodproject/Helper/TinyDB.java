@@ -289,9 +289,9 @@ public class TinyDB {
     }
 
     /**
-     * Get parsed ArrayList of String from SharedPreferences at 'key'
-     * @param key SharedPreferences key
-     * @return ArrayList of String
+     * Lấy danh sách ArrayList của chuỗi đã phân tích từ SharedPreferences ở 'key'
+     * @param key Khóa của SharedPreferences
+     * @return ArrayList của chuỗi
      */
     public ArrayList<String> getListString(String key) {
         return new ArrayList<String>(Arrays.asList(TextUtils.split(preferences.getString(key, ""), "‚‗‚")));
@@ -334,12 +334,12 @@ public class TinyDB {
         ArrayList<Foods> playerList =  new ArrayList<Foods>();
 
         for(String jObjString : objStrings){
+            //chuyển đổi file json sang đối tượng trong java
             Foods player  = gson.fromJson(jObjString,  Foods.class);
             playerList.add(player);
         }
         return playerList;
     }
-
 
 
     public <T> T getObject(String key, Class<T> classOfT){
@@ -350,7 +350,6 @@ public class TinyDB {
             throw new NullPointerException();
         return (T)value;
     }
-
 
     // Put methods
 

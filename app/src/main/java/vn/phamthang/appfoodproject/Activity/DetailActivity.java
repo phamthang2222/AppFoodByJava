@@ -1,15 +1,11 @@
 package vn.phamthang.appfoodproject.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
-
 import com.bumptech.glide.Glide;
 
 import vn.phamthang.appfoodproject.Domain.Foods;
 import vn.phamthang.appfoodproject.Helper.ManagmentCart;
+import vn.phamthang.appfoodproject.Helper.ManagmentWhisList;
 import vn.phamthang.appfoodproject.R;
 import vn.phamthang.appfoodproject.databinding.ActivityDetailBinding;
 
@@ -18,6 +14,7 @@ public class DetailActivity extends BaseActivity {
     private Foods object;
     private int num = 1;
     private ManagmentCart managmentCart;
+    private ManagmentWhisList managmentWhisList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +27,10 @@ public class DetailActivity extends BaseActivity {
     }
 
     private void getVariable() {
+
         managmentCart = new ManagmentCart(this);
+        managmentWhisList = new ManagmentWhisList(this);
+
         binding.btBack.setOnClickListener(v -> finish());
         Glide.with(DetailActivity.this)
                 .load(object.getImagePath())
@@ -61,11 +61,18 @@ public class DetailActivity extends BaseActivity {
             managmentCart.insertFood(object);
 
         });
+        binding.btAddToWhisList.setOnClickListener(v->{
+            managmentWhisList.insertFood(object);
+        });
     }
     private void getIntentExtrax() {
         object = (Foods) getIntent().getSerializableExtra("object");
         if(managmentCart != null){
             managmentCart.insertFood(object);
         }
+        if(managmentWhisList != null){
+            managmentWhisList.insertFood(object);
+        }
     }
+
 }

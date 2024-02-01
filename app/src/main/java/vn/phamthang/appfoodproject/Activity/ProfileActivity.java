@@ -109,5 +109,9 @@ public class ProfileActivity extends BaseActivity {
         });
 
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        dialogConfirm.show();
+    }
 }

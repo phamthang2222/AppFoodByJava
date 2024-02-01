@@ -47,7 +47,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvStart"
+                android:id="@+id/tvStartInBestDeal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -60,9 +60,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/tvStart"
-                app:layout_constraintStart_toEndOf="@+id/tvStart"
-                app:layout_constraintTop_toTopOf="@+id/tvStart"
+                app:layout_constraintBottom_toBottomOf="@+id/tvStartInBestDeal"
+                app:layout_constraintStart_toEndOf="@+id/tvStartInBestDeal"
+                app:layout_constraintTop_toTopOf="@+id/tvStartInBestDeal"
                 app:srcCompat="@drawable/star" />
 
             <TextView

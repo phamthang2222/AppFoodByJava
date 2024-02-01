@@ -34,7 +34,6 @@ public class RegisterActivity extends BaseActivity {
 
         setVariable();
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -70,7 +69,10 @@ public class RegisterActivity extends BaseActivity {
                             User newUser = new User(userId, email, password,name,null, null);
                             // Lưu thông tin người dùng vào database
                             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("User");
-                            databaseReference.child(firebaseUser.getUid()).setValue(newUser);
+                            databaseReference.child(userId).setValue(newUser);
+
+                            DatabaseReference databaseWishList = FirebaseDatabase.getInstance().getReference("WhisList");
+                            databaseWishList.child(userId).setValue("null");
 
                             Toast.makeText(RegisterActivity.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
 
@@ -87,12 +89,9 @@ public class RegisterActivity extends BaseActivity {
             }
 
         });
-        binding.btLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
-                finish();
-            }
+        binding.btLogin.setOnClickListener(v -> {
+            startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+            finish();
         });
     }
 

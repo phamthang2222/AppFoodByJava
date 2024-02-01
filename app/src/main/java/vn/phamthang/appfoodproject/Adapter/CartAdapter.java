@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import vn.phamthang.appfoodproject.Domain.Foods;
 import vn.phamthang.appfoodproject.Helper.ManagmentCart;
-import vn.phamthang.appfoodproject.Helper.ChangeNumberItemsListener;
+import vn.phamthang.appfoodproject.Interface.ChangeNumberItemsListener;
 import vn.phamthang.appfoodproject.R;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder> {
@@ -82,8 +82,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder> {
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(R.id.tvTitleInCart);
-            imgItem = itemView.findViewById(R.id.imageView13);
+            tvTitle = itemView.findViewById(R.id.tvTitleInCartView);
+            imgItem = itemView.findViewById(R.id.imgFoodInCV);
             tvPriceInCart = itemView.findViewById(R.id.tvPriceInCart);
             btMinus = itemView.findViewById(R.id.btMinusInCardView);
             btPlus = itemView.findViewById(R.id.btPlusInCardView);
