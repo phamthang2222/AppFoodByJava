@@ -39,6 +39,7 @@ public class DetailActivity extends BaseActivity {
         binding.tvTitileInDetailFood.setText(object.getTitle());
         binding.tvDescrip.setText(object.getDescription());
         binding.tvRating.setText("Đánh giá: "+object.getStar());
+        binding.tvTimeInDetailFood.setText(object.getTimeValue()+" phút");
         binding.ratingBar.setRating((float)object.getStar());
         binding.tvTotalPrice.setText(num * object.getPrice()+"$");
         binding.btPlus.setOnClickListener(v -> {

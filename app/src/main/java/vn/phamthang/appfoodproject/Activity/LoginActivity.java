@@ -64,20 +64,17 @@ public class LoginActivity extends BaseActivity {
     }
     private void  signIn(String userName,String passWord ){
         mAuth.signInWithEmailAndPassword(userName,passWord)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            binding.progressBarLogin.setVisibility(View.INVISIBLE);
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            finish();
-                            Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            binding.progressBarLogin.setVisibility(View.INVISIBLE);
-                            Toast.makeText(LoginActivity.this, "Sai tên đăng nhập hoặc mật khẩu", Toast.LENGTH_SHORT).show();
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        binding.progressBarLogin.setVisibility(View.INVISIBLE);
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        binding.progressBarLogin.setVisibility(View.INVISIBLE);
+                        Toast.makeText(LoginActivity.this, "Sai tên đăng nhập hoặc mật khẩu", Toast.LENGTH_SHORT).show();
 
-                        }
                     }
                 });
     }

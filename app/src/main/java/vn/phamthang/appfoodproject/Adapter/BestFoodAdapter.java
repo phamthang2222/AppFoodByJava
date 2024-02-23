@@ -55,6 +55,7 @@ public class BestFoodAdapter extends RecyclerView.Adapter<BestFoodAdapter.viewHo
             intent.putExtra("object",items.get(position));
             context.startActivity(intent);
         });
+
     }
 
     @Override
@@ -63,7 +64,7 @@ public class BestFoodAdapter extends RecyclerView.Adapter<BestFoodAdapter.viewHo
     }
 
     public class viewHolder extends  RecyclerView.ViewHolder{
-        TextView tvTitle, tvPrice, tvStart,tvTime;
+        TextView tvTitle, tvPrice, tvStart,tvTime, btAdd;
         ImageView pic;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,6 +73,7 @@ public class BestFoodAdapter extends RecyclerView.Adapter<BestFoodAdapter.viewHo
             tvStart = itemView.findViewById(R.id.tvStartInBestDeal);
             tvTime = itemView.findViewById(R.id.tvTime);
             pic = itemView.findViewById(R.id.imgItem);
+
 
         }
     }

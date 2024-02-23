@@ -1,6 +1,7 @@
 package vn.phamthang.appfoodproject.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 
 import java.util.ArrayList;
 
+import vn.phamthang.appfoodproject.Activity.DetailActivity;
 import vn.phamthang.appfoodproject.Domain.Foods;
 import vn.phamthang.appfoodproject.Helper.ManagmentWhisList;
 import vn.phamthang.appfoodproject.Interface.RemoveItemFromList;
@@ -24,6 +26,7 @@ import vn.phamthang.appfoodproject.R;
 public class WhisListAdapter extends RecyclerView.Adapter<WhisListAdapter.viewHolder> {
 
     ArrayList<Foods> list;
+    Context context;
     private ManagmentWhisList managmentWhisList;
     RemoveItemFromList removeItemFromList;
 
@@ -36,7 +39,8 @@ public class WhisListAdapter extends RecyclerView.Adapter<WhisListAdapter.viewHo
     @NonNull
     @Override
     public WhisListAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View infalate = LayoutInflater
+       context = parent.getContext();
+        View infalate = LayoutInflater
                .from(parent.getContext())
                .inflate(R.layout.viewholder_whislist_item,parent,false);
 
@@ -60,6 +64,11 @@ public class WhisListAdapter extends RecyclerView.Adapter<WhisListAdapter.viewHo
                     removeItemFromList.remove();
                 }
             });
+        });
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("object",list.get(position));
+            context.startActivity(intent);
         });
     }
 

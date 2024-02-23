@@ -325,22 +325,17 @@ public class TinyDB {
 
         return newList;
     }
-
-
     public ArrayList<Foods> getListObject(String key){
         Gson gson = new Gson();
-
         ArrayList<String> objStrings = getListString(key);
         ArrayList<Foods> playerList =  new ArrayList<Foods>();
-
         for(String jObjString : objStrings){
             //chuyển đổi file json sang đối tượng trong java
-            Foods player  = gson.fromJson(jObjString,  Foods.class);
+            Foods player  = gson.fromJson(jObjString,Foods.class);
             playerList.add(player);
         }
         return playerList;
     }
-
 
     public <T> T getObject(String key, Class<T> classOfT){
 
