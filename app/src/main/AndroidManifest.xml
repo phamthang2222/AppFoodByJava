@@ -15,6 +15,9 @@
         android:theme="@style/Theme.AppFoodProject"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.DoneActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.WishListActivity"
             android:exported="false" />
         <activity

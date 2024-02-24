@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,7 +39,7 @@ import vn.phamthang.appfoodproject.databinding.ActivityMainBinding;
 
 public class MainActivity extends BaseActivity {
     private ActivityMainBinding binding;
-
+    private int idLocation,idTime,idPrice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +74,9 @@ public class MainActivity extends BaseActivity {
                     Intent intent = new Intent(MainActivity.this, ListFoodActivity.class);
                     intent.putExtra("text",findText);
                     intent.putExtra("isSearch", true);
+                    intent.putExtra("idLocation",idLocation);
+                    intent.putExtra("idTime",idTime);
+                    intent.putExtra("idPrice",idPrice);
                     startActivity(intent);
                 }
             }
@@ -91,6 +96,8 @@ public class MainActivity extends BaseActivity {
         binding.btWishList.setOnClickListener(v -> {
             startActivity(new Intent(this,WishListActivity.class));
         });
+
+
     }
 
     private void initBestFood() {
@@ -98,7 +105,7 @@ public class MainActivity extends BaseActivity {
         binding.progressBarBestFood.setVisibility(View.VISIBLE);
         ArrayList<Foods> list = new ArrayList<>();
         //câu lệnh truy vấn để lấy ra các giá trị true của bestFood
-        Query query =myRef.orderByChild("BestFood").equalTo(true);
+        Query query = myRef.orderByChild("BestFood").equalTo(true);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -162,6 +169,18 @@ public class MainActivity extends BaseActivity {
                     ArrayAdapter<Location> adapter =new ArrayAdapter<>(MainActivity.this,R.layout.sp_item,list);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     binding.locationSp.setAdapter(adapter);
+                    binding.locationSp.setSelection(3);
+                    binding.locationSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                            Location selectedLoc = (Location) parentView.getSelectedItem();
+                            idLocation = selectedLoc.getId();
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parentView) {
+                        }
+                    });
+
                 }
             }
             @Override
@@ -183,6 +202,17 @@ public class MainActivity extends BaseActivity {
                     ArrayAdapter<Time> adapter =new ArrayAdapter<>(MainActivity.this,R.layout.sp_item,list);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     binding.timeSp.setAdapter(adapter);
+                    binding.timeSp.setSelection(3);
+                    binding.timeSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                            Time selectedTime = (Time) parentView.getSelectedItem();
+                            idTime = selectedTime.getId();
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parentView) {
+                        }
+                    });
                 }
             }
             @Override
@@ -204,8 +234,20 @@ public class MainActivity extends BaseActivity {
                     ArrayAdapter<Price> adapter =new ArrayAdapter<>(MainActivity.this,R.layout.sp_item,list);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     binding.priceSp.setAdapter(adapter);
+                    binding.priceSp.setSelection(3);
+                    binding.priceSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                            Price selectedPrice = (Price) parentView.getSelectedItem();
+                            idPrice = selectedPrice.getId();
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parentView) {
+                        }
+                    });
+
                 }else{
-                    Log.d("TAG","Fail.");
+
                 }
             }
             @Override

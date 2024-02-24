@@ -74,7 +74,6 @@ public class BestFoodAdapter extends RecyclerView.Adapter<BestFoodAdapter.viewHo
             tvTime = itemView.findViewById(R.id.tvTime);
             pic = itemView.findViewById(R.id.imgItem);
 
-
         }
     }
 }

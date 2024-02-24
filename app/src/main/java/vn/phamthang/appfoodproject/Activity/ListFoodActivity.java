@@ -27,6 +27,7 @@ public class ListFoodActivity extends BaseActivity {
     private int categoryId;
     private String categoryName;
     private String searchText;
+    private int idLocation,idTime,idPrice;
     private boolean isSearch;
 
     @Override
@@ -34,6 +35,7 @@ public class ListFoodActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityListFoodBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         getIntentExtra();
         initList();
     }
@@ -54,13 +56,22 @@ public class ListFoodActivity extends BaseActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     for(DataSnapshot issue: snapshot.getChildren()){
-                        list.add(issue.getValue(Foods.class));
+                        Foods food = issue.getValue(Foods.class);
+                        if(food.getLocationId() == idLocation &&
+                        food.getTimeId() == idTime &&
+                        food.getPriceId() == idPrice){
+                            list.add(food);
+                        }
+                        if(idLocation == 3 || idPrice ==3 || idTime==3){
+                            list.add(food);
+                        }
                     }
                     if(list.size()>0){
                         binding.rcvFoodListView.setLayoutManager(new GridLayoutManager(ListFoodActivity.this,2));
                         adapter = new FoodListAdapter(list);
                         binding.rcvFoodListView.setAdapter(adapter);
                     }
+
                     binding.progressBar.setVisibility(View.GONE);
 
                 }
@@ -70,7 +81,6 @@ public class ListFoodActivity extends BaseActivity {
 
             }
         });
-
     }
 
     private void getIntentExtra() {
@@ -78,8 +88,12 @@ public class ListFoodActivity extends BaseActivity {
         categoryName = getIntent().getStringExtra("CategoryName");
         searchText = getIntent().getStringExtra("text");
         isSearch = getIntent().getBooleanExtra("isSearch", false);
+        idLocation = getIntent().getIntExtra("idLocation",-1);
+        idTime = getIntent().getIntExtra("idTime",-1);
+        idPrice = getIntent().getIntExtra("idPrice",-1);
         binding.tvTitle.setText(categoryName);
-        Log.d("TAG", "onBindViewHolder: "+ categoryName);
         binding.btBack.setOnClickListener(v -> finish());
+        Log.d("idloc, idtime,idprice"," "+idLocation+" "+idTime+" "+idPrice);
+
     }
 }

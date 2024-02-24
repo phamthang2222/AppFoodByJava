@@ -87,7 +87,10 @@ public class CartActivity extends BaseActivity {
             startActivity(new Intent(this, ProfileActivity.class));
             finish();
         });
-
+        binding.button2.setOnClickListener(v ->{
+            startActivity(new Intent(this, DoneActivity.class));
+            finish();
+        });
     }
     private void setInfomationUser(){
         FirebaseUser currentUser = mAuth.getCurrentUser();
