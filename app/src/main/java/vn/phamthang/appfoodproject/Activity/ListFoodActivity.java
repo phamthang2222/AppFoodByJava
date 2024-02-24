@@ -51,36 +51,6 @@ public class ListFoodActivity extends BaseActivity {
         }else{
             query = myRef.orderByChild("CategoryId").equalTo(categoryId);
         }
-//        query.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    for(DataSnapshot issue: snapshot.getChildren()){
-////                        Foods food = issue.getValue(Foods.class);
-////                        if(food.getLocationId() == idLocation &&
-////                        food.getTimeId() == idTime &&
-////                        food.getPriceId() == idPrice){
-////                            list.add(food);
-////                        }
-////                        if(idLocation == 3 || idPrice ==3 || idTime==3){
-////                            list.add(food);
-////                        }
-////                    }
-////                    if(list.size()>0){
-////                        binding.rcvFoodListView.setLayoutManager(new GridLayoutManager(ListFoodActivity.this,2));
-////                        adapter = new FoodListAdapter(list);
-////                        binding.rcvFoodListView.setAdapter(adapter);
-////                    }
-////
-////                    binding.progressBar.setVisibility(View.GONE);
-//
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -129,6 +99,5 @@ public class ListFoodActivity extends BaseActivity {
         binding.tvTitle.setText(categoryName);
         binding.btBack.setOnClickListener(v -> finish());
         Log.d("idloc, idtime,idprice"," "+idLocation+" "+idTime+" "+idPrice);
-
     }
 }
