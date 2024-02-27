@@ -29,6 +29,8 @@ public class ProfileActivity extends BaseActivity {
     private DialogConfirm dialogConfirm;
     ActivityProfileBinding binding;
     private String idUser="";
+    private String dateCreated ="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,7 @@ public class ProfileActivity extends BaseActivity {
                         String address = snapshot.child(userId).child("address").getValue(String.class);
                         idUser = snapshot.child(userId).child("id").getValue(String.class);
                         String passWord = snapshot.child(userId).child("password").getValue(String.class);
+                        dateCreated = snapshot.child(userId).child("dateCreated").getValue(String.class);
 
                         binding.tvUserName.setText(username);
                         binding.tvEmailUser.setText(email);
@@ -68,10 +71,8 @@ public class ProfileActivity extends BaseActivity {
                         binding.tvPassword.setText(passWord);
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    // Xử lý lỗi, nếu có
                 }
             });
         }
@@ -87,24 +88,16 @@ public class ProfileActivity extends BaseActivity {
             String phoneNumber = binding.tvPhoneNumber.getText().toString().trim();
             String address = binding.tvAddress.getText().toString().trim();
             String passWord = binding.tvPassword.getText().toString().trim();
-            User updateUser = new User(idUser,email,passWord,username,address,phoneNumber);
+            User updateUser = new User(idUser,email,passWord,username,address,phoneNumber,dateCreated);
 
             if (currentUser != null) {
                 String userId = currentUser.getUid();
                 DatabaseReference currentUserRef =FirebaseDatabase.getInstance().getReference().child(USER).child(userId);
                 currentUserRef.setValue(updateUser)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(getApplicationContext(), "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-                            }
-                         })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getApplicationContext(), "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        .addOnSuccessListener(unused ->
+                                Toast.makeText(getApplicationContext(), "Cập nhật thành công", Toast.LENGTH_SHORT).show())
+                        .addOnFailureListener(e ->
+                                Toast.makeText(getApplicationContext(), "Cập nhật thất bại", Toast.LENGTH_SHORT).show());
             }
         });
 

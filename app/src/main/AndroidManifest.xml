@@ -9,11 +9,17 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/fast_food_hamburguer_svgrepo_com"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppFoodProject"
         tools:targetApi="31">
+        <activity
+            android:name=".Activity.Admin.UserManagermentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Admin.AdminMainActivity"
+            android:exported="false" />
         <activity
             android:name=".Activity.DoneActivity"
             android:exported="false" />

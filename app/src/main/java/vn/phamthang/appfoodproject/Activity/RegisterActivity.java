@@ -16,6 +16,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.time.LocalDate;
+
 import vn.phamthang.appfoodproject.Dialog.DialogConfirm;
 import vn.phamthang.appfoodproject.Domain.User;
 import vn.phamthang.appfoodproject.R;
@@ -25,6 +27,7 @@ import vn.phamthang.appfoodproject.databinding.ActivityRegisterBinding;
 public class RegisterActivity extends BaseActivity {
 
     ActivityRegisterBinding binding;
+    public static String date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +68,14 @@ public class RegisterActivity extends BaseActivity {
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
                             // Lấy thông tin người dùng
                             String userId = firebaseUser.getUid();
-//                            String userEmail = firebaseUser.getEmail();
-                            User newUser = new User(userId, email, password,name,null, null);
+
+                            LocalDate currentDate = null;
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                currentDate = LocalDate.now();
+                            }
+                            date = currentDate.toString();
+
+                            User newUser = new User(userId, email, password,name,null, null,date);
                             // Lưu thông tin người dùng vào database
                             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("User");
                             databaseReference.child(userId).setValue(newUser);

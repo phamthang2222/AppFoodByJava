@@ -10,17 +10,28 @@ public class User implements Serializable {
     private String address;
     private String numberPhone;
 
+    private String dateCreated;
+
     // Tạo constructor
-    public User(String id, String email, String password, String userName,String address, String numberPhone) {
+    public User(String id, String email, String password, String userName,String address, String numberPhone,String dateCreated) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.userName = userName;
         this.address = address;
         this.numberPhone = numberPhone;
+        this.dateCreated = dateCreated;
     }
 
     public User() {
+    }
+
+    public String getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     public String getUserName() {

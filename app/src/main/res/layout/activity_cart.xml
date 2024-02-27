@@ -167,26 +167,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-
                     android:text="Vận chuyển"
                     android:textColor="@color/black"
-
                     android:textSize="18dp"
                     app:layout_constraintStart_toStartOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
 
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-
                     android:text="Thuế"
                     android:textColor="@color/black"
-
                     android:textSize="18dp"
                     app:layout_constraintStart_toStartOf="@+id/textView16"
                     app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giảm giá"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:layout_marginTop="10dp"
+
+                    app:layout_constraintStart_toStartOf="@+id/textView17"
+                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
                 <TextView
                     android:id="@+id/tvTotalFree"
@@ -229,7 +238,18 @@
                     app:layout_constraintBottom_toBottomOf="@+id/textView17"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView17" />
+                <TextView
+                    android:id="@+id/tvVoucher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="0%"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
 
+                    app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView18" />
                 <View
                     android:id="@+id/view4"
                     android:layout_width="match_parent"
@@ -241,7 +261,7 @@
                     android:background="#636363"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
                 <TextView
                     android:id="@+id/textView22"

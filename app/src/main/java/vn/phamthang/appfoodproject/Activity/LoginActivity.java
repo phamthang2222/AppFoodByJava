@@ -1,24 +1,18 @@
 package vn.phamthang.appfoodproject.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-
-import vn.phamthang.appfoodproject.R;
-import vn.phamthang.appfoodproject.databinding.ActivityIntroBinding;
+import vn.phamthang.appfoodproject.Activity.Admin.AdminMainActivity;
 import vn.phamthang.appfoodproject.databinding.ActivityLoginBinding;
-import vn.phamthang.appfoodproject.databinding.ActivityRegisterBinding;
 
 public class LoginActivity extends BaseActivity {
     ActivityLoginBinding binding;
+    private String TKadmin = "admin@food.vn";
+    private String MKadmin = "123456";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +22,9 @@ public class LoginActivity extends BaseActivity {
         setVariable();
     }
     private void setVariable() {
-        binding.edtEmail.setText("t1@gmail.com");
-        binding.edtPassword.setText("123456");
+        binding.edtEmail.setText(TKadmin);
+        binding.edtPassword.setText(MKadmin);
+
         binding.btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,10 +61,17 @@ public class LoginActivity extends BaseActivity {
         mAuth.signInWithEmailAndPassword(userName,passWord)
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
-                        binding.progressBarLogin.setVisibility(View.INVISIBLE);
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
-                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        if(userName.equals("admin@food.vn")){
+                            binding.progressBarLogin.setVisibility(View.INVISIBLE);
+                            startActivity(new Intent(LoginActivity.this, AdminMainActivity.class));
+                            finish();
+                            Toast.makeText(LoginActivity.this, "Đăng nhập với vai trò admin", Toast.LENGTH_SHORT).show();
+                        }else{
+                            binding.progressBarLogin.setVisibility(View.INVISIBLE);
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
+                            Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else {
                         binding.progressBarLogin.setVisibility(View.INVISIBLE);
@@ -77,5 +79,6 @@ public class LoginActivity extends BaseActivity {
 
                     }
                 });
+
     }
 }
