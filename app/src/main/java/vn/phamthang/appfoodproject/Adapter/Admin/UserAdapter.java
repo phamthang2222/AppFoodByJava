@@ -1,6 +1,7 @@
 package vn.phamthang.appfoodproject.Adapter.Admin;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -24,17 +25,19 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
     @NonNull
     @Override
     public UserAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        context = parent.getContext();
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_user,parent,false);
+        return new viewholder(inflate);
     }
 
     @Override
     public void onBindViewHolder(@NonNull UserAdapter.viewholder holder, int position) {
         holder.tvUserName.setText(list.get(position).getUserName());
-        holder.tvEmailUser.setText(list.get(position).getEmail());
-        holder.tvPassWordUser.setText(list.get(position).getPassword());
-        holder.tvPhoneNumberUser.setText(list.get(position).getNumberPhone());
-        holder.tvCreatedDate.setText(list.get(position).getDateCreated());
-        holder.tvAddressUser.setText(list.get(position).getAddress());
+        holder.tvEmailUser.setText("Email: "+list.get(position).getEmail());
+        holder.tvPassWordUser.setText("Mật khẩu: "+list.get(position).getPassword());
+        holder.tvPhoneNumberUser.setText("SĐT: "+list.get(position).getNumberPhone());
+        holder.tvCreatedDate.setText("Ngày tạo: "+list.get(position).getDateCreated());
+        holder.tvAddressUser.setText("Địa chỉ: "+list.get(position).getAddress());
     }
 
     @Override

@@ -29,7 +29,6 @@ public class AdminMainActivity extends BaseActivity {
             finish();
         });
         binding.UserManagerment.setOnClickListener(v ->{
-            Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(AdminMainActivity.this, UserManagermentActivity.class));
         });
     }

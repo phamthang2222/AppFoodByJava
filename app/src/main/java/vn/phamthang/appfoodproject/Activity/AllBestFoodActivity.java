@@ -34,6 +34,7 @@ public class AllBestFoodActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAllBestFoodBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         binding.btBack.setOnClickListener(v -> {
             finish();
         });
