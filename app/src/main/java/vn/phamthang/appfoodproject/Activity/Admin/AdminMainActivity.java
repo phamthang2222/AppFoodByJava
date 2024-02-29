@@ -31,5 +31,8 @@ public class AdminMainActivity extends BaseActivity {
         binding.UserManagerment.setOnClickListener(v ->{
             startActivity(new Intent(AdminMainActivity.this, UserManagermentActivity.class));
         });
+        binding.FoodManagement.setOnClickListener(v -> {
+            startActivity(new Intent(AdminMainActivity.this, FoodManagermentActivity.class));
+        });
     }
 }

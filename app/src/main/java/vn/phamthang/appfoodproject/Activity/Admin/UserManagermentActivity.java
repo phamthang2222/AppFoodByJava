@@ -24,6 +24,7 @@ import vn.phamthang.appfoodproject.Adapter.Admin.UserAdapter;
 import vn.phamthang.appfoodproject.Domain.User;
 import vn.phamthang.appfoodproject.databinding.ActivityUserManagermentBinding;
 
+
 public class UserManagermentActivity extends BaseActivity {
     ActivityUserManagermentBinding binding;
     private RecyclerView.Adapter adapter;
