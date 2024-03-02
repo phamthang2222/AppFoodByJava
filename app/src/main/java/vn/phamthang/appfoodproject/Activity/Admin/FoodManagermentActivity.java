@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import com.google.firebase.database.DataSnapshot;
@@ -38,6 +39,17 @@ public class FoodManagermentActivity extends BaseActivity {
         initListFood();
     }
 
+    private void setVariable() {
+        binding.btBack.setOnClickListener(v -> {
+            finish();
+        });
+        binding.btnSearch.setOnClickListener(v -> {
+            initFoodByFind();
+            Handler handler = new Handler();
+            handler.postDelayed(() -> binding.progressBar.setVisibility(View.GONE), 1000);
+        });
+    }
+
     private void initListFood() {
         DatabaseReference myRef = database.getInstance().getReference(FOODS);
         binding.progressBar.setVisibility(View.VISIBLE);
@@ -67,20 +79,13 @@ public class FoodManagermentActivity extends BaseActivity {
         });
     }
 
-    private void setVariable() {
-        binding.btBack.setOnClickListener(v -> {
-            finish();
-        });
-        binding.btnSearch.setOnClickListener(v -> {
-            initFoodByFind();
-        });
-    }
 
     private void initFoodByFind() {
         DatabaseReference myRef = database.getInstance().getReference(FOODS);
         Query query;
+        binding.progressBar.setVisibility(View.VISIBLE);
         if(binding.edtFind.toString().isEmpty()){
-//            initListFood();
+
         }else {
             ArrayList<Foods> listFoods2 = new ArrayList<>();
             searchText = binding.edtFind.getText().toString();

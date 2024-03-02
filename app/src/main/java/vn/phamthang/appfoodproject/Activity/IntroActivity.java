@@ -13,7 +13,6 @@ import vn.phamthang.appfoodproject.databinding.ActivityIntroBinding;
 
 public class IntroActivity extends BaseActivity {
 
-
     ActivityIntroBinding binding;
 
     @Override
@@ -27,7 +26,6 @@ public class IntroActivity extends BaseActivity {
     }
 
     private void setVaribale() {
-
 
         binding.regisBtn.setOnClickListener(v -> {
             startActivity(new Intent(IntroActivity.this, RegisterActivity.class));

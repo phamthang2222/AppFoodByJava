@@ -22,6 +22,7 @@ public class DetailActivity extends BaseActivity {
         binding = ActivityDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getWindow().setStatusBarColor(getResources().getColor(R.color.black));
+
         getIntentExtrax();
         getVariable();
     }
@@ -30,8 +31,8 @@ public class DetailActivity extends BaseActivity {
 
         managmentCart = new ManagmentCart(this);
         managmentWhisList = new ManagmentWhisList(this);
-
         binding.btBack.setOnClickListener(v -> finish());
+
         Glide.with(DetailActivity.this)
                 .load(object.getImagePath())
                 .into(binding.imageDetailFood);
@@ -42,6 +43,7 @@ public class DetailActivity extends BaseActivity {
         binding.tvTimeInDetailFood.setText(object.getTimeValue()+" phút");
         binding.ratingBar.setRating((float)object.getStar());
         binding.tvTotalPrice.setText(num * object.getPrice()+"$");
+
         binding.btPlus.setOnClickListener(v -> {
             num += 1;
             binding.tvQuantity.setText(num+"");

@@ -66,19 +66,16 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        binding.btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String findText = binding.edtFind.getText().toString();
-                if(!findText.isEmpty()){
-                    Intent intent = new Intent(MainActivity.this, ListFoodActivity.class);
-                    intent.putExtra("text",findText);
-                    intent.putExtra("isSearch", true);
-                    intent.putExtra("idLocation",idLocation);
-                    intent.putExtra("idTime",idTime);
-                    intent.putExtra("idPrice",idPrice);
-                    startActivity(intent);
-                }
+        binding.btnSearch.setOnClickListener(v -> {
+            String findText = binding.edtFind.getText().toString();
+            if(!findText.isEmpty()){
+                Intent intent = new Intent(MainActivity.this, ListFoodActivity.class);
+                intent.putExtra("text",findText);
+                intent.putExtra("isSearch", true);
+                intent.putExtra("idLocation",idLocation);
+                intent.putExtra("idTime",idTime);
+                intent.putExtra("idPrice",idPrice);
+                startActivity(intent);
             }
         });
         binding.btnCart.setOnClickListener(v -> {

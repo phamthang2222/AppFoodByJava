@@ -1,28 +1,22 @@
 package vn.phamthang.appfoodproject.Dialog;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
+import vn.phamthang.appfoodproject.Activity.Admin.EditFoodActivity;
+import vn.phamthang.appfoodproject.Activity.Admin.FoodManagermentActivity;
 import vn.phamthang.appfoodproject.Activity.MainActivity;
-import vn.phamthang.appfoodproject.Interface.OnCustomDialogClickListener;
 import vn.phamthang.appfoodproject.R;
 
-public class DialogConfirm {
+public class DialogConfirmEditText {
 
     private Dialog dialog;
     private Context context;
 
-    public DialogConfirm(Context context) {
+    public DialogConfirmEditText(Context context) {
         this.context = context;
         // Create the Dialog
         dialog = new Dialog(context);
@@ -51,7 +45,8 @@ public class DialogConfirm {
         }
     }
     public void performOkayAction(){
-        Intent intent = new Intent(context, MainActivity.class);
+        Intent intent = new Intent(context, FoodManagermentActivity.class);
         context.startActivity(intent);
+        ((EditFoodActivity)context).finish();
     }
 }

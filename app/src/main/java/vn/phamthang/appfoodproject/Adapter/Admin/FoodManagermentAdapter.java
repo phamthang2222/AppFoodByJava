@@ -1,6 +1,7 @@
 package vn.phamthang.appfoodproject.Adapter.Admin;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 
 import java.util.ArrayList;
 
+import vn.phamthang.appfoodproject.Activity.Admin.EditFoodActivity;
 import vn.phamthang.appfoodproject.Domain.Foods;
 import vn.phamthang.appfoodproject.R;
 
@@ -46,6 +48,11 @@ public class FoodManagermentAdapter extends RecyclerView.Adapter<FoodManagerment
                 .load(listFoodManagerment.get(position).getImagePath())
                 .transform(new CenterCrop()) // crop and border
                 .into(holder.imgFood);
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, EditFoodActivity.class);
+            intent.putExtra("items",listFoodManagerment.get(position));
+            context.startActivity(intent);
+        });
     }
 
     @Override

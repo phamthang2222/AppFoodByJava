@@ -33,6 +33,7 @@ public class AdminMainActivity extends BaseActivity {
         });
         binding.FoodManagement.setOnClickListener(v -> {
             startActivity(new Intent(AdminMainActivity.this, FoodManagermentActivity.class));
+
         });
     }
 }
