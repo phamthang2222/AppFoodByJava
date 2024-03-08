@@ -26,7 +26,6 @@
             app:srcCompat="@drawable/arrow" />
 
         <TextView
-            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -133,7 +132,40 @@
                     android:textSize="22dp"
                     android:textStyle="bold" />
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout41"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/white_background"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/blue_gray"
+                    android:layout_marginStart="16dp"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:text="Sản phẩm nổi bật" />
+
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    android:scaleY="1.5"
+                    android:scaleX="1.5"
+                  />
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/linearLayout5"
                 android:layout_width="match_parent"
@@ -143,7 +175,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout41">
 
                 <ImageView
                     android:layout_width="40dp"
@@ -292,6 +324,40 @@
                     android:textStyle="italic" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/linearLayout10"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/white_background"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="6dp"
+                    android:padding="2dp"
+                    app:srcCompat="@drawable/ic_description" />
+
+                <EditText
+                    android:id="@+id/tvDes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:hint="Mô tả"
+                    android:textColor="@color/blue_gray"
+                    android:textSize="20dp"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btDeleteFood"
                 style="@android:style/Widget.Button"
@@ -308,7 +374,7 @@
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout10" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btUpdateFood"

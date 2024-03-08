@@ -32,7 +32,7 @@ public class AdminMainActivity extends BaseActivity {
             startActivity(new Intent(AdminMainActivity.this, UserManagermentActivity.class));
         });
         binding.FoodManagement.setOnClickListener(v -> {
-            startActivity(new Intent(AdminMainActivity.this, FoodManagermentActivity.class));
+            startActivity(new Intent(AdminMainActivity.this, NavigationFoodManagermentActivity.class));
 
         });
     }
