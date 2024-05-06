@@ -1,18 +1,14 @@
-package vn.phamthang.appfoodproject.Activity;
+package vn.phamthang.appfoodproject.Activity.User;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
 
-import vn.phamthang.appfoodproject.Adapter.CartAdapter;
 import vn.phamthang.appfoodproject.Adapter.WhisListAdapter;
 import vn.phamthang.appfoodproject.Helper.ManagmentWhisList;
-import vn.phamthang.appfoodproject.Interface.ChangeNumberItemsListener;
 import vn.phamthang.appfoodproject.Interface.RemoveItemFromList;
-import vn.phamthang.appfoodproject.R;
 import vn.phamthang.appfoodproject.databinding.ActivityWishListBinding;
 
 public class WishListActivity extends BaseActivity {

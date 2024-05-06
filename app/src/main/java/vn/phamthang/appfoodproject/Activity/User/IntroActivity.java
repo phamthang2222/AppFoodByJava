@@ -1,14 +1,9 @@
-package vn.phamthang.appfoodproject.Activity;
+package vn.phamthang.appfoodproject.Activity.User;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import vn.phamthang.appfoodproject.Dialog.DialogConfirm;
-import vn.phamthang.appfoodproject.R;
 import vn.phamthang.appfoodproject.databinding.ActivityIntroBinding;
 
 public class IntroActivity extends BaseActivity {

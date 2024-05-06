@@ -1,7 +1,6 @@
 package vn.phamthang.appfoodproject.Activity.Admin;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,11 +16,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import vn.phamthang.appfoodproject.Activity.BaseActivity;
+import vn.phamthang.appfoodproject.Activity.User.BaseActivity;
 import vn.phamthang.appfoodproject.Adapter.Admin.FoodManagermentAdapter;
-import vn.phamthang.appfoodproject.Domain.Foods;
-import vn.phamthang.appfoodproject.R;
-import vn.phamthang.appfoodproject.databinding.ActivityFoodManagermentBinding;
+import vn.phamthang.appfoodproject.Objects.Foods;
 import vn.phamthang.appfoodproject.databinding.ActivityOutstandingFoodBinding;
 
 public class OutstandingFoodActivity extends BaseActivity {

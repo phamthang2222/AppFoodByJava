@@ -1,10 +1,9 @@
-package vn.phamthang.appfoodproject.Activity;
+package vn.phamthang.appfoodproject.Activity.User;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import vn.phamthang.appfoodproject.Adapter.FoodListAdapter;
-import vn.phamthang.appfoodproject.Domain.Foods;
+import vn.phamthang.appfoodproject.Objects.Foods;
 import vn.phamthang.appfoodproject.databinding.ActivityListFoodBinding;
 
 public class ListFoodActivity extends BaseActivity {

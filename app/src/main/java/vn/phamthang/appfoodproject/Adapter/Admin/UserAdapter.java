@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import vn.phamthang.appfoodproject.Domain.User;
+import vn.phamthang.appfoodproject.Objects.User;
 import vn.phamthang.appfoodproject.R;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {

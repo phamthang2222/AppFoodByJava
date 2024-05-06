@@ -13,12 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 
 import java.util.ArrayList;
 
 import vn.phamthang.appfoodproject.Activity.Admin.EditFoodActivity;
-import vn.phamthang.appfoodproject.Domain.Foods;
+import vn.phamthang.appfoodproject.Objects.Foods;
 import vn.phamthang.appfoodproject.R;
 
 public class FoodManagermentAdapter extends RecyclerView.Adapter<FoodManagermentAdapter.viewholder> {

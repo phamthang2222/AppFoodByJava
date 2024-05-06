@@ -2,13 +2,13 @@ package vn.phamthang.appfoodproject.Activity.Admin;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import vn.phamthang.appfoodproject.Activity.BaseActivity;
-import vn.phamthang.appfoodproject.Activity.LoginActivity;
+import vn.phamthang.appfoodproject.Activity.User.BaseActivity;
+import vn.phamthang.appfoodproject.Activity.User.LoginActivity;
 import vn.phamthang.appfoodproject.databinding.ActivityAdminMainBinding;
+import vn.phamthang.appfoodproject.databinding.ActivityMainBinding;
 
 public class AdminMainActivity extends BaseActivity {
     ActivityAdminMainBinding binding;
@@ -33,7 +33,9 @@ public class AdminMainActivity extends BaseActivity {
         });
         binding.FoodManagement.setOnClickListener(v -> {
             startActivity(new Intent(AdminMainActivity.this, NavigationFoodManagermentActivity.class));
-
+        });
+        binding.statistical.setOnClickListener(v ->{
+            startActivity(new Intent(AdminMainActivity.this, StatisticalActivity.class));
         });
     }
 }

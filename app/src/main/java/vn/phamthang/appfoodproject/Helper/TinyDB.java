@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
-import vn.phamthang.appfoodproject.Domain.Foods;
+import vn.phamthang.appfoodproject.Objects.Foods;
 
 
 public class TinyDB {
@@ -517,7 +517,9 @@ public class TinyDB {
     public void clear() {
         preferences.edit().clear().apply();
     }
-
+    public void clear(String key) {
+        preferences.edit().remove(key).apply();
+    }
     /**
      * Retrieve all values from SharedPreferences. Do not modify collection return by method
      * @return a Map representing a list of key/value pairs from SharedPreferences
@@ -543,7 +545,6 @@ public class TinyDB {
      */
     public void unregisterOnSharedPreferenceChangeListener(
             SharedPreferences.OnSharedPreferenceChangeListener listener) {
-
         preferences.unregisterOnSharedPreferenceChangeListener(listener);
     }
 

@@ -1,4 +1,4 @@
-package vn.phamthang.appfoodproject.Activity;
+package vn.phamthang.appfoodproject.Activity.User;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,8 @@ import vn.phamthang.appfoodproject.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends BaseActivity {
     ActivityLoginBinding binding;
-    private String TKadmin = "admin@food.vn";
+//    private String TKadmin = "admin@food.vn";
+    private String TKadmin = "t1@gmail.com";
     private String MKadmin = "123456";
 
     @Override

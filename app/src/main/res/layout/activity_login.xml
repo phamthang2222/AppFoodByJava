@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".Activity.LoginActivity">
+    tools:context=".Activity.User.LoginActivity">
 
     <ScrollView
         android:id="@+id/scrollView3"
@@ -38,6 +38,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="Food"
+                    android:shadowColor="@color/purple_700"
+                    android:shadowDx="4"
+                    android:shadowDy="10"
+                    android:shadowRadius="00.1"
                     android:textColor="@color/red"
                     android:textSize="45dp"
                     android:textStyle="bold" />
@@ -46,8 +50,12 @@
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="App"
-                    android:textColor="@color/black"
+                    android:text="Bears"
+                    android:shadowColor="@color/red"
+                    android:shadowDx="4"
+                    android:shadowDy="10"
+                    android:shadowRadius="00.1"
+                    android:textColor="@color/purple_700"
                     android:textSize="45dp"
                     android:textStyle="bold" />
 

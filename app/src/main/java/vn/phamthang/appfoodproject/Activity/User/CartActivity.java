@@ -1,4 +1,4 @@
-package vn.phamthang.appfoodproject.Activity;
+package vn.phamthang.appfoodproject.Activity.User;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,7 +15,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
+
 import vn.phamthang.appfoodproject.Adapter.CartAdapter;
+import vn.phamthang.appfoodproject.Objects.Cart;
 import vn.phamthang.appfoodproject.Helper.ManagmentCart;
 import vn.phamthang.appfoodproject.Interface.ChangeNumberItemsListener;
 import vn.phamthang.appfoodproject.databinding.ActivityCartBinding;
@@ -24,10 +27,12 @@ public class CartActivity extends BaseActivity {
 
     ActivityCartBinding binding;
     private RecyclerView.Adapter adapter;
-    private ManagmentCart managmentCart;
+    private ManagmentCart managmentCart ;
     private double tax;
+    private double total;
 
     private String idUser="";
+    private LocalDate date= null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +43,8 @@ public class CartActivity extends BaseActivity {
         managmentCart = new ManagmentCart(this);
         
         setVariable();
-        setInfomationUser();
-        cacularCart();
+        setInformationUser();
+        calculatorCart();
         initList();
 
 
@@ -52,31 +57,31 @@ public class CartActivity extends BaseActivity {
         }else{
             binding.tvEmpty.setVisibility(View.GONE);
             binding.scrollViewCart.setVisibility(View.VISIBLE);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
+            binding.rcvCartView.setLayoutManager(linearLayoutManager);
+            adapter = new CartAdapter(managmentCart.getListCart(), this, new ChangeNumberItemsListener() {
+                @Override
+                public void change() {
+                    calculatorCart();
+                }
+            });
+            binding.rcvCartView.setAdapter(adapter);
         }
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
-        binding.rcvCartView.setLayoutManager(linearLayoutManager);
-        adapter = new CartAdapter(managmentCart.getListCart(), this, new ChangeNumberItemsListener() {
-            @Override
-            public void change() {
-                cacularCart();
-            }
-        });
-        binding.rcvCartView.setAdapter(adapter);
+
     }
 
-    private void cacularCart() {
+    private void calculatorCart() {
         double percentTax = 0.02; // 2%
         double delivery  = 10.0; // 10$
 
         tax = Math.round(managmentCart.getTotalFee()*percentTax*100.0)/100.0;
-        double total = Math.round((managmentCart.getTotalFee() + tax + delivery)*100.0)/100.0;
+        total = Math.round((managmentCart.getTotalFee() + tax + delivery)*100.0)/100.0;
         double itemTotal = Math.round((managmentCart.getTotalFee())*100.0)/100.0;
 
-        binding.tvTotalFree.setText("$"+itemTotal);
+        binding.tvTotalFee.setText("$"+itemTotal);
         binding.tvDelivery.setText("$"+delivery);
         binding.tvTax.setText("$"+tax+" ("+percentTax*100+"%)");
         binding.tvTotalCart.setText("$"+total);
-
     }
 
     private void setVariable() {
@@ -87,12 +92,20 @@ public class CartActivity extends BaseActivity {
             startActivity(new Intent(this, ProfileActivity.class));
             finish();
         });
-        binding.button2.setOnClickListener(v ->{
-            startActivity(new Intent(this, DoneActivity.class));
+        binding.btnFinish.setOnClickListener(v ->{
+            informationCart();
+            Intent intent = new Intent(this,DoneActivity.class);
+            intent.putExtra("date",date.toString());
+
+            startActivity(intent);
             finish();
         });
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+               date = LocalDate.now();
+        }
     }
-    private void setInfomationUser(){
+    private void setInformationUser(){
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -116,7 +129,6 @@ public class CartActivity extends BaseActivity {
                         binding.tvUserName.setText(username);
                         binding.tvAddressUser.setText(address);
                         binding.tvUserNumberPhone.setText(phoneNumber);
-
                     }
                 }
                 @Override
@@ -125,6 +137,15 @@ public class CartActivity extends BaseActivity {
                 }
             });
         }
+    }
+    private void informationCart(){
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
 
+            Cart cart = new Cart(userId, total, date.toString());
+            String cartId = database.getReference("Cart").child(userId).push().getKey();
+            database.getReference("Cart").child(userId).child(cartId).setValue(cart);
+        }
     }
 }

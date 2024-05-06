@@ -17,8 +17,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 
 import java.util.ArrayList;
 
-import vn.phamthang.appfoodproject.Activity.DetailActivity;
-import vn.phamthang.appfoodproject.Domain.Foods;
+import vn.phamthang.appfoodproject.Activity.User.DetailActivity;
+import vn.phamthang.appfoodproject.Objects.Foods;
 import vn.phamthang.appfoodproject.Helper.ManagmentWhisList;
 import vn.phamthang.appfoodproject.Interface.RemoveItemFromList;
 import vn.phamthang.appfoodproject.R;

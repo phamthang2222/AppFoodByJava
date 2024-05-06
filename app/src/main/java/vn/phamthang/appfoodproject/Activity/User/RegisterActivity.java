@@ -1,11 +1,9 @@
-package vn.phamthang.appfoodproject.Activity;
+package vn.phamthang.appfoodproject.Activity.User;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,10 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalDate;
 
-import vn.phamthang.appfoodproject.Dialog.DialogConfirm;
-import vn.phamthang.appfoodproject.Domain.User;
-import vn.phamthang.appfoodproject.R;
-import vn.phamthang.appfoodproject.databinding.ActivityIntroBinding;
+import vn.phamthang.appfoodproject.Objects.User;
 import vn.phamthang.appfoodproject.databinding.ActivityRegisterBinding;
 
 public class RegisterActivity extends BaseActivity {
@@ -82,6 +77,9 @@ public class RegisterActivity extends BaseActivity {
 
                             DatabaseReference databaseWishList = FirebaseDatabase.getInstance().getReference("WhisList");
                             databaseWishList.child(userId).setValue("null");
+
+                            DatabaseReference databaseCart = FirebaseDatabase.getInstance().getReference("Cart");
+                            databaseCart.child(userId).setValue("null");
 
                             Toast.makeText(RegisterActivity.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
 

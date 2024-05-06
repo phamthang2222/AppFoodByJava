@@ -1,4 +1,4 @@
-package vn.phamthang.appfoodproject.Domain;
+package vn.phamthang.appfoodproject.Objects;
 
 import java.io.Serializable;
 
@@ -80,5 +80,18 @@ public class User implements Serializable {
 
     public void setNumberPhone(String numberPhone) {
         this.numberPhone = numberPhone;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", email='" + email + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", numberPhone='" + numberPhone + '\'' +
+                ", dateCreated='" + dateCreated + '\'' +
+                '}';
     }
 }

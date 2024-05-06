@@ -1,13 +1,8 @@
 package vn.phamthang.appfoodproject.Activity.Admin;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,10 +19,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import vn.phamthang.appfoodproject.Activity.BaseActivity;
-import vn.phamthang.appfoodproject.Activity.MainActivity;
-import vn.phamthang.appfoodproject.Domain.Foods;
-import vn.phamthang.appfoodproject.Domain.Location;
+import vn.phamthang.appfoodproject.Activity.User.BaseActivity;
+import vn.phamthang.appfoodproject.Objects.Foods;
+import vn.phamthang.appfoodproject.Objects.Location;
 import vn.phamthang.appfoodproject.R;
 import vn.phamthang.appfoodproject.databinding.ActivityEditFoodBinding;
 

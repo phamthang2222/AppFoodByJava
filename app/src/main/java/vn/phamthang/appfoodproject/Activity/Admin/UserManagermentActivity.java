@@ -1,33 +1,29 @@
 package vn.phamthang.appfoodproject.Activity.Admin;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import vn.phamthang.appfoodproject.Activity.AllBestFoodActivity;
-import vn.phamthang.appfoodproject.Activity.BaseActivity;
+import vn.phamthang.appfoodproject.Activity.User.BaseActivity;
 import vn.phamthang.appfoodproject.Adapter.Admin.UserAdapter;
-import vn.phamthang.appfoodproject.Domain.User;
+import vn.phamthang.appfoodproject.Objects.User;
 import vn.phamthang.appfoodproject.databinding.ActivityUserManagermentBinding;
 
 
 public class UserManagermentActivity extends BaseActivity {
     ActivityUserManagermentBinding binding;
     private RecyclerView.Adapter adapter;
+    private static  ArrayList<User> listUser = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +37,7 @@ public class UserManagermentActivity extends BaseActivity {
     private void initListUser() {
         DatabaseReference myRef = database.getInstance().getReference(USER);
         binding.progressBar.setVisibility(View.VISIBLE);
-        ArrayList<User> listUser = new ArrayList<>();
+//        ArrayList<User> listUser = new ArrayList<>();
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

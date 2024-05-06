@@ -1,9 +1,11 @@
-package vn.phamthang.appfoodproject.Activity;
+package vn.phamthang.appfoodproject.Activity.User;
 
 import android.os.Bundle;
+import android.view.View;
+
 import com.bumptech.glide.Glide;
 
-import vn.phamthang.appfoodproject.Domain.Foods;
+import vn.phamthang.appfoodproject.Objects.Foods;
 import vn.phamthang.appfoodproject.Helper.ManagmentCart;
 import vn.phamthang.appfoodproject.Helper.ManagmentWhisList;
 import vn.phamthang.appfoodproject.R;
@@ -23,7 +25,7 @@ public class DetailActivity extends BaseActivity {
         setContentView(binding.getRoot());
         getWindow().setStatusBarColor(getResources().getColor(R.color.black));
 
-        getIntentExtrax();
+        getIntentExtra();
         getVariable();
     }
 
@@ -31,6 +33,8 @@ public class DetailActivity extends BaseActivity {
 
         managmentCart = new ManagmentCart(this);
         managmentWhisList = new ManagmentWhisList(this);
+        managmentWhisList.setBinding(binding);
+
         binding.btBack.setOnClickListener(v -> finish());
 
         Glide.with(DetailActivity.this)
@@ -43,6 +47,7 @@ public class DetailActivity extends BaseActivity {
         binding.tvTimeInDetailFood.setText(object.getTimeValue()+" phút");
         binding.ratingBar.setRating((float)object.getStar());
         binding.tvTotalPrice.setText(num * object.getPrice()+"$");
+
 
         binding.btPlus.setOnClickListener(v -> {
             num += 1;
@@ -63,18 +68,23 @@ public class DetailActivity extends BaseActivity {
             object.setNumberInCart(num);
             managmentCart.insertFood(object);
 
+
         });
         binding.btAddToWhisList.setOnClickListener(v->{
             managmentWhisList.insertFood(object);
+            binding.btAddToWhisListFull.setVisibility(View.VISIBLE);
         });
     }
-    private void getIntentExtrax() {
+    private void getIntentExtra() {
+
         object = (Foods) getIntent().getSerializableExtra("object");
+
         if(managmentCart != null){
             managmentCart.insertFood(object);
         }
         if(managmentWhisList != null){
             managmentWhisList.insertFood(object);
+
         }
     }
 

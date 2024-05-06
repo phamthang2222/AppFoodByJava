@@ -1,20 +1,12 @@
 package vn.phamthang.appfoodproject.Dialog;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
-import vn.phamthang.appfoodproject.Activity.MainActivity;
-import vn.phamthang.appfoodproject.Interface.OnCustomDialogClickListener;
+import vn.phamthang.appfoodproject.Activity.User.MainActivity;
 import vn.phamthang.appfoodproject.R;
 
 public class DialogConfirm {

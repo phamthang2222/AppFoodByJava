@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".Activity.RegisterActivity">
+    tools:context=".Activity.User.RegisterActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,7 +34,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="Food App"
+                    android:text="Food Bears"
+                    android:shadowColor="@color/purple_700"
+                    android:shadowDx="4"
+                    android:shadowDy="10"
+                    android:shadowRadius="00.1"
                     android:layout_marginStart="12dp"
                     android:textColor="@color/red"
                     android:textSize="45dp"

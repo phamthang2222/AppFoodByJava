@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import vn.phamthang.appfoodproject.Domain.Foods;
+import vn.phamthang.appfoodproject.Objects.Foods;
 import vn.phamthang.appfoodproject.Interface.ChangeNumberItemsListener;
 
 
@@ -63,5 +63,11 @@ public class ManagmentCart {
         listItem.get(position).setNumberInCart(listItem.get(position).getNumberInCart()+1);
         tinyDB.putListObject("CartList",listItem);
         changeNumberItemsListener.change();
+    }
+    public void clearCart() {
+        tinyDB.clear(); // Xóa tất cả dữ liệu trong SharedPreferences
+    }
+    public void clearList(String Key){
+        tinyDB.clear(Key);
     }
 }

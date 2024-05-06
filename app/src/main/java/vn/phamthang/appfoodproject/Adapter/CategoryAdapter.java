@@ -2,7 +2,6 @@ package vn.phamthang.appfoodproject.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import vn.phamthang.appfoodproject.Activity.ListFoodActivity;
-import vn.phamthang.appfoodproject.Domain.Category;
-import vn.phamthang.appfoodproject.Domain.Foods;
+import vn.phamthang.appfoodproject.Activity.User.ListFoodActivity;
+import vn.phamthang.appfoodproject.Objects.Category;
 import vn.phamthang.appfoodproject.R;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewHolder> {
@@ -73,7 +68,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewHo
         int drawableResourceId = context.getResources().getIdentifier(items.get(position).getImagePath(),
                 "drawable",holder.itemView.getContext().getPackageName());
         Glide.with(context)
-                .load((drawableResourceId))
+                .load((drawableResourceId-1))
                 .into(holder.pic);
 
         holder.itemView.setOnClickListener(v -> {
@@ -82,7 +77,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewHo
 //            intent.putExtra("CategoryId",items.get(position).getId());
             intent.putExtra("CategoryId",pos);
             intent.putExtra("CategoryName",items.get(position).getName());
-            Log.d("TAG", "click in main: "+ position);
             context.startActivity(intent);
         });
     }

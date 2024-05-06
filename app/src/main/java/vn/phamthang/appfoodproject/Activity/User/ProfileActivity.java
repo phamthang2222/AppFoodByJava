@@ -1,16 +1,10 @@
-package vn.phamthang.appfoodproject.Activity;
+package vn.phamthang.appfoodproject.Activity.User;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,8 +14,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import vn.phamthang.appfoodproject.Dialog.DialogConfirm;
-import vn.phamthang.appfoodproject.Domain.User;
-import vn.phamthang.appfoodproject.R;
+import vn.phamthang.appfoodproject.Objects.User;
 import vn.phamthang.appfoodproject.databinding.ActivityProfileBinding;
 
 public class ProfileActivity extends BaseActivity {

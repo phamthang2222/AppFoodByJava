@@ -8,7 +8,6 @@ import android.widget.Button;
 
 import vn.phamthang.appfoodproject.Activity.Admin.EditFoodActivity;
 import vn.phamthang.appfoodproject.Activity.Admin.FoodManagermentActivity;
-import vn.phamthang.appfoodproject.Activity.MainActivity;
 import vn.phamthang.appfoodproject.R;
 
 public class DialogConfirmEditText {

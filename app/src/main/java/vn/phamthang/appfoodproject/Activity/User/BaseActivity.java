@@ -1,4 +1,4 @@
-package vn.phamthang.appfoodproject.Activity;
+package vn.phamthang.appfoodproject.Activity.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +17,7 @@ public class BaseActivity extends AppCompatActivity {
     public static final String PRICE = "Price";
     public static final String CATEGORY = "Category";
     public static final String USER = "User";
+    public static final String CART = "Cart";
     public static FirebaseAuth mAuth;
     public static FirebaseDatabase database;
 

@@ -1,4 +1,4 @@
-package vn.phamthang.appfoodproject.Domain;
+package vn.phamthang.appfoodproject.Objects;
 
 public class Voucher {
     private String id;

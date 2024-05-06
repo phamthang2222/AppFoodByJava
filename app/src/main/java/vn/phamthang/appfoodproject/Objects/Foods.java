@@ -1,12 +1,13 @@
-package vn.phamthang.appfoodproject.Domain;
+package vn.phamthang.appfoodproject.Objects;
 
 import java.io.Serializable;
 
 public class Foods implements Serializable {
+
+    private int Id;
     private int CategoryId;
     private String Description;
     private Boolean BestFood;
-    private int Id;
     private int LocationId;
     private double Price;
     private String ImagePath;
@@ -16,6 +17,15 @@ public class Foods implements Serializable {
     private int TimeValue;
     private String Title;
     private int numberInCart;
+    private boolean isFav = false;
+
+    public boolean isFav() {
+        return isFav;
+    }
+
+    public void setFav(boolean fav) {
+        isFav = fav;
+    }
 
     public Foods(int categoryId, String description, Boolean bestFood, int id,
                  int locationId, double price, String imagePath, int priceId,
