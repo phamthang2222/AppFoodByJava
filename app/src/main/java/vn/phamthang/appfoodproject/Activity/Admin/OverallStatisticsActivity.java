@@ -11,8 +11,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import vn.phamthang.appfoodproject.Activity.User.BaseActivity;
 import vn.phamthang.appfoodproject.Adapter.ViewPagerAdapter.ChartViewPagerAdapter;
-import vn.phamthang.appfoodproject.Fragments.PieCharFragment;
-import vn.phamthang.appfoodproject.Fragments.BarChartFragment;
+import vn.phamthang.appfoodproject.Fragments.Chart.PieCharFragment;
+import vn.phamthang.appfoodproject.Fragments.Chart.BarChartFragment;
 import vn.phamthang.appfoodproject.databinding.ActivityOverallStatisticsBinding;
 
 public class OverallStatisticsActivity extends BaseActivity {

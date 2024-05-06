@@ -259,7 +259,7 @@ public class MainActivity extends BaseActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
                         String username = snapshot.child(userId).child("userName").getValue(String.class);
-                       binding.tvUserName.setText(username);
+                       binding.tvUserName4124.setText(username);
                        Log.d("TAG","onCreate: "+username);
                     }
                 }

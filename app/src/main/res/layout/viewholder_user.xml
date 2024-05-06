@@ -36,7 +36,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvUserName"
+            android:id="@+id/tvUserName4124"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -56,8 +56,8 @@
             android:text="Email: null"
             android:textColor="@color/blue_gray"
             android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="@+id/tvUserName"
-            app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+            app:layout_constraintStart_toStartOf="@+id/tvUserName4124"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserName4124" />
          />
 
         <TextView

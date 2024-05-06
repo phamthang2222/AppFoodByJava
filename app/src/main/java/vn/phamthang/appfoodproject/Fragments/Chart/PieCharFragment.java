@@ -1,4 +1,4 @@
-package vn.phamthang.appfoodproject.Fragments;
+package vn.phamthang.appfoodproject.Fragments.Chart;
 
 import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.listCart;
 import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.listUser;

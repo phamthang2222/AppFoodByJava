@@ -57,7 +57,7 @@ public class ProfileActivity extends BaseActivity {
                         String passWord = snapshot.child(userId).child("password").getValue(String.class);
                         dateCreated = snapshot.child(userId).child("dateCreated").getValue(String.class);
 
-                        binding.tvUserName.setText(username);
+                        binding.tvUserName4124.setText(username);
                         binding.tvEmailUser.setText(email);
                         binding.tvPhoneNumber.setText(phoneNumber);
                         binding.tvAddress.setText(address);
@@ -77,7 +77,7 @@ public class ProfileActivity extends BaseActivity {
 
         binding.btUpdate.setOnClickListener(v -> {
             String email = binding.tvEmailUser.getText().toString().trim();
-            String username = binding.tvUserName.getText().toString().trim();
+            String username = binding.tvUserName4124.getText().toString().trim();
             String phoneNumber = binding.tvPhoneNumber.getText().toString().trim();
             String address = binding.tvAddress.getText().toString().trim();
             String passWord = binding.tvPassword.getText().toString().trim();

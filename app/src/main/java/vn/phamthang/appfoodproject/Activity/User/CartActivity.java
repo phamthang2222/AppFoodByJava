@@ -21,6 +21,7 @@ import vn.phamthang.appfoodproject.Adapter.CartAdapter;
 import vn.phamthang.appfoodproject.Objects.Cart;
 import vn.phamthang.appfoodproject.Helper.ManagmentCart;
 import vn.phamthang.appfoodproject.Interface.ChangeNumberItemsListener;
+import vn.phamthang.appfoodproject.Objects.CartNow;
 import vn.phamthang.appfoodproject.databinding.ActivityCartBinding;
 
 public class CartActivity extends BaseActivity {
@@ -75,8 +76,8 @@ public class CartActivity extends BaseActivity {
         double delivery  = 10.0; // 10$
 
         tax = Math.round(managmentCart.getTotalFee()*percentTax*100.0)/100.0;
-        total = Math.round((managmentCart.getTotalFee() + tax + delivery)*100.0)/100.0;
         double itemTotal = Math.round((managmentCart.getTotalFee())*100.0)/100.0;
+        total = Math.round((managmentCart.getTotalFee() + tax + delivery)*100.0)/100.0;
 
         binding.tvTotalFee.setText("$"+itemTotal);
         binding.tvDelivery.setText("$"+delivery);
@@ -139,6 +140,7 @@ public class CartActivity extends BaseActivity {
         }
     }
     private void informationCart(){
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -146,6 +148,14 @@ public class CartActivity extends BaseActivity {
             Cart cart = new Cart(userId, total, date.toString());
             String cartId = database.getReference("Cart").child(userId).push().getKey();
             database.getReference("Cart").child(userId).child(cartId).setValue(cart);
+
+            if (currentUser != null) {
+                CartNow cartNow = new CartNow(userId, total,managmentCart.getListCart(), date.toString(),false);
+                cartId = database.getReference("Cart").child(userId).push().getKey();
+                database.getReference("CartNow").child(userId).child(cartId).setValue(cartNow);
+            }
         }
+
+
     }
 }

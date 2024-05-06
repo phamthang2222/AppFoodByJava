@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import vn.phamthang.appfoodproject.Activity.User.BaseActivity;
 import vn.phamthang.appfoodproject.Objects.Cart;
+import vn.phamthang.appfoodproject.Objects.CartNow;
 import vn.phamthang.appfoodproject.Objects.User;
 import vn.phamthang.appfoodproject.databinding.ActivityStatisticalBinding;
 
@@ -23,6 +24,7 @@ public class StatisticalActivity extends BaseActivity {
     ActivityStatisticalBinding binding;
     public static ArrayList<User> listUser = new ArrayList<>();
     public static ArrayList<Cart> listCart = new ArrayList<>();
+    public static ArrayList<CartNow> listCartNow = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,7 @@ public class StatisticalActivity extends BaseActivity {
             startActivity(new Intent(this,OverallStatisticsActivity.class));
         });
         binding.foodOrderNow.setOnClickListener(v ->{
-            startActivity(new Intent(this,OverallStatisticsActivity.class));
+            startActivity(new Intent(this,FoodOrderRealTimeActivity.class));
         });
     }
     private void initData() {
@@ -56,6 +58,7 @@ public class StatisticalActivity extends BaseActivity {
                         listUser.add(user);
                     }
                 }
+                //lấy về all list cart
                 DatabaseReference cartRef = database.getReference(CART);
                 cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -71,15 +74,40 @@ public class StatisticalActivity extends BaseActivity {
                             }
                         }
                         Toast.makeText(StatisticalActivity.this, "Thanh cong", Toast.LENGTH_SHORT).show();
-                        Log.d("USER_CREATE:", listUser.toString()+"");
-                        Log.d("USER_CREATE:", listCart.toString()+"");
-                    }
 
+                    }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         // Xử lý lỗi nếu có
                     }
                 });
+
+
+                //lấy về list cart now
+                DatabaseReference cartNowRef = database.getReference("CartNow");
+                cartNowRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                            String userId = userSnapshot.getKey(); // Lấy ID của người dùng
+                            for (DataSnapshot cartSnapshot : userSnapshot.getChildren()) {
+                                CartNow cartNow = cartSnapshot.getValue(CartNow.class);
+                                // Xử lý đối tượng cart nhận được ở đây
+                                if (cartNow != null) {
+                                    listCartNow.add(cartNow);
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                Log.d("USER_CREATE:", listUser.toString() + "");
+                Log.d("USER_CREATE:", listCart.toString() + "");
+                Log.d("USER_CREATE:", listCartNow.toString() + "");
             }
 
             @Override
@@ -87,7 +115,6 @@ public class StatisticalActivity extends BaseActivity {
 
             }
         });
+
     }
-
-
 }
