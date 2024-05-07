@@ -8,7 +8,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import vn.phamthang.appfoodproject.Activity.User.BaseActivity;
 import vn.phamthang.appfoodproject.Activity.User.LoginActivity;
 import vn.phamthang.appfoodproject.databinding.ActivityAdminMainBinding;
-import vn.phamthang.appfoodproject.databinding.ActivityMainBinding;
 
 public class AdminMainActivity extends BaseActivity {
     ActivityAdminMainBinding binding;
@@ -36,6 +35,9 @@ public class AdminMainActivity extends BaseActivity {
         });
         binding.statistical.setOnClickListener(v ->{
             startActivity(new Intent(AdminMainActivity.this, StatisticalActivity.class));
+        });
+        binding.voucher.setOnClickListener(v -> {
+            startActivity(new Intent(AdminMainActivity.this, ManagementVoucherActivity.class));
         });
     }
 }

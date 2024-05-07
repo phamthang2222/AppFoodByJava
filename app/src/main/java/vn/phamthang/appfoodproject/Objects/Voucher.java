@@ -38,4 +38,12 @@ public class Voucher {
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return "Voucher{" +
+                "id='" + id + '\'' +
+                ", code='" + code + '\'' +
+                ", value='" + value + '\'' +
+                '}';
+    }
 }

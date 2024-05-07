@@ -8,6 +8,9 @@ import android.os.Bundle;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
+import vn.phamthang.appfoodproject.Objects.Voucher;
 import vn.phamthang.appfoodproject.R;
 
 public class BaseActivity extends AppCompatActivity {
@@ -18,6 +21,8 @@ public class BaseActivity extends AppCompatActivity {
     public static final String CATEGORY = "Category";
     public static final String USER = "User";
     public static final String CART = "Cart";
+
+    public static ArrayList<Voucher> listVoucher = new ArrayList<>();
     public static FirebaseAuth mAuth;
     public static FirebaseDatabase database;
 
@@ -35,5 +40,7 @@ public class BaseActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+
+
 
 }

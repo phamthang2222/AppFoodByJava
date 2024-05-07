@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,6 +54,7 @@ public class OrderCartAdapter extends RecyclerView.Adapter<OrderCartAdapter.view
             public void onClick(View v) {
                 mListCartNow.get(position).setFinish(true);
                 Toast.makeText(context, "Đã hoàn thành", Toast.LENGTH_SHORT).show();
+
             }
         });
 

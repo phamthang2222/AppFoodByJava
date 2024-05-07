@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -48,7 +49,9 @@ public class StatisticalActivity extends BaseActivity {
     }
     private void initData() {
         DatabaseReference myRef = database.getInstance().getReference(USER);
-
+        binding.progressBar4.setVisibility(View.VISIBLE);
+        binding.statisticsOverview.setVisibility(View.INVISIBLE);
+        binding.foodOrderNow.setVisibility(View.INVISIBLE);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -73,7 +76,7 @@ public class StatisticalActivity extends BaseActivity {
                                 }
                             }
                         }
-                        Toast.makeText(StatisticalActivity.this, "Thanh cong", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(StatisticalActivity.this, "Thanh cong", Toast.LENGTH_SHORT).show();
 
                     }
                     @Override
@@ -105,6 +108,9 @@ public class StatisticalActivity extends BaseActivity {
 
                     }
                 });
+                binding.progressBar4.setVisibility(View.GONE);
+                binding.statisticsOverview.setVisibility(View.VISIBLE);
+                binding.foodOrderNow.setVisibility(View.VISIBLE);
                 Log.d("USER_CREATE:", listUser.toString() + "");
                 Log.d("USER_CREATE:", listCart.toString() + "");
                 Log.d("USER_CREATE:", listCartNow.toString() + "");
