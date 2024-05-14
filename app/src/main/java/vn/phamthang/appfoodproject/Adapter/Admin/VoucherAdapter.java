@@ -41,7 +41,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.viewHold
     public void onBindViewHolder(@NonNull VoucherAdapter.viewHolder holder, int position) {
         holder.tvIdVoucher.setText(mListVoucher.get(position).getId());
         holder.tvCodeVoucher.setText(mListVoucher.get(position).getCode());
-        holder.tvValueVoucher.setText(mListVoucher.get(position).getValue());
+        holder.tvValueVoucher.setText(mListVoucher.get(position).getValue()+"%");
         holder.btnDelete.setOnClickListener(v -> {
             mListVoucher.remove(position);
             updateVoucherInFireBase(mListVoucher);

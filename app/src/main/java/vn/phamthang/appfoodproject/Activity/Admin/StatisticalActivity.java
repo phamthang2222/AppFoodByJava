@@ -42,16 +42,15 @@ public class StatisticalActivity extends BaseActivity {
         });
         binding.statisticsOverview.setOnClickListener(v ->{
             startActivity(new Intent(this,OverallStatisticsActivity.class));
+            finish();
         });
         binding.foodOrderNow.setOnClickListener(v ->{
             startActivity(new Intent(this,FoodOrderRealTimeActivity.class));
+            finish();
         });
     }
     private void initData() {
         DatabaseReference myRef = database.getInstance().getReference(USER);
-        binding.progressBar4.setVisibility(View.VISIBLE);
-        binding.statisticsOverview.setVisibility(View.INVISIBLE);
-        binding.foodOrderNow.setVisibility(View.INVISIBLE);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -76,7 +75,6 @@ public class StatisticalActivity extends BaseActivity {
                                 }
                             }
                         }
-//                        Toast.makeText(StatisticalActivity.this, "Thanh cong", Toast.LENGTH_SHORT).show();
 
                     }
                     @Override
@@ -95,7 +93,6 @@ public class StatisticalActivity extends BaseActivity {
                             String userId = userSnapshot.getKey(); // Lấy ID của người dùng
                             for (DataSnapshot cartSnapshot : userSnapshot.getChildren()) {
                                 CartNow cartNow = cartSnapshot.getValue(CartNow.class);
-                                // Xử lý đối tượng cart nhận được ở đây
                                 if (cartNow != null) {
                                     listCartNow.add(cartNow);
                                 }
@@ -108,12 +105,8 @@ public class StatisticalActivity extends BaseActivity {
 
                     }
                 });
-                binding.progressBar4.setVisibility(View.GONE);
-                binding.statisticsOverview.setVisibility(View.VISIBLE);
-                binding.foodOrderNow.setVisibility(View.VISIBLE);
-                Log.d("USER_CREATE:", listUser.toString() + "");
-                Log.d("USER_CREATE:", listCart.toString() + "");
-                Log.d("USER_CREATE:", listCartNow.toString() + "");
+//                Toast.makeText(StatisticalActivity.this, "thành công", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

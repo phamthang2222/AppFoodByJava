@@ -37,76 +37,69 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar4"
-        android:background="@color/white"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutContent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
-    <LinearLayout
-        android:id="@+id/statisticsDetail"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/red_button_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statisticsOverview">
-
-        <TextView
-            android:id="@+id/foodOrderNow"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Đơn hàng hôm nay"
-            android:textColor="@color/blue_gray"
-            android:textSize="22dp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="20dp"
-            app:srcCompat="@drawable/ic_enter" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/statisticsOverview"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/red_button_background"
         android:visibility="visible"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/statisticsOverview"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Thống kê tổng quan"
-            android:textColor="@color/blue_gray"
-            android:textSize="22dp"
-            android:textStyle="bold" />
+            android:background="@drawable/red_button_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView16"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="20dp"
-            app:srcCompat="@drawable/ic_enter" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Thống kê tổng quan"
+                android:textColor="@color/blue_gray"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView16"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                app:srcCompat="@drawable/ic_enter" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/foodOrderNow"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/red_button_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/statisticsOverview">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Đơn hàng hôm nay"
+                android:textColor="@color/blue_gray"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                app:srcCompat="@drawable/ic_enter" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

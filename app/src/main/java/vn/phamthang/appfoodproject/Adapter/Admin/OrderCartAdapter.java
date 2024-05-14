@@ -1,7 +1,9 @@
 package vn.phamthang.appfoodproject.Adapter.Admin;
 
 import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.listUser;
+import static vn.phamthang.appfoodproject.Activity.User.BaseActivity.database;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +13,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import vn.phamthang.appfoodproject.Objects.CartNow;
 import vn.phamthang.appfoodproject.Objects.User;
@@ -26,7 +32,8 @@ public class OrderCartAdapter extends RecyclerView.Adapter<OrderCartAdapter.view
     Context context;
     private ArrayList<CartNow> mListCartNow;
 
-    public OrderCartAdapter(ArrayList<CartNow> mListCartNow) {
+
+    public OrderCartAdapter(ArrayList<CartNow> mListCartNow ) {
         this.mListCartNow = mListCartNow;
     }
 
@@ -39,7 +46,7 @@ public class OrderCartAdapter extends RecyclerView.Adapter<OrderCartAdapter.view
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OrderCartAdapter.viewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull OrderCartAdapter.viewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         ItemOrderInCartAdapter itemOrderInCartAdapter = new ItemOrderInCartAdapter(mListCartNow.get(position).getFoodsList());
 
@@ -53,8 +60,8 @@ public class OrderCartAdapter extends RecyclerView.Adapter<OrderCartAdapter.view
             @Override
             public void onClick(View v) {
                 mListCartNow.get(position).setFinish(true);
-                Toast.makeText(context, "Đã hoàn thành", Toast.LENGTH_SHORT).show();
-
+                mListCartNow.remove(position);
+                notifyDataSetChanged();
             }
         });
 
@@ -79,6 +86,7 @@ public class OrderCartAdapter extends RecyclerView.Adapter<OrderCartAdapter.view
             rcv = itemView.findViewById(R.id.recyclerView);
             btnFinish = itemView.findViewById(R.id.buttonFinish);
         }
+
     }
 
     private String userName(String idUser) {
@@ -102,5 +110,17 @@ public class OrderCartAdapter extends RecyclerView.Adapter<OrderCartAdapter.view
         }
         return address;
     }
+    private void updateListOrderToFireBase(CartNow cart,String userId,String cartId){
+        Map<String, Object> updateData = new HashMap<>();
+        updateData.put(cartId, cart);
 
+        DatabaseReference cartNowRef = database.getReference("CartNow").child(userId);
+        cartNowRef.updateChildren(updateData).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(context, "Đã hoàn thành", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
 }

@@ -1,6 +1,7 @@
 package vn.phamthang.appfoodproject.Fragments.OrderCart;
 
 import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.listCartNow;
+import static vn.phamthang.appfoodproject.Fragments.OrderCart.OrderCartFragment.mListCartNow;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,19 +14,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import java.util.ArrayList;
 
 import vn.phamthang.appfoodproject.Adapter.Admin.FinishOrderCartAdapter;
-import vn.phamthang.appfoodproject.Adapter.Admin.OrderCartAdapter;
 import vn.phamthang.appfoodproject.Objects.CartNow;
-import vn.phamthang.appfoodproject.R;
 import vn.phamthang.appfoodproject.databinding.FragmentFinishedOrderCartBinding;
 
 
 public class FinishedOrderCartFragment extends Fragment {
 
     private RecyclerView.Adapter mAdapter;
-    private ArrayList<CartNow> mListCartNow = new ArrayList<>();
+    public ArrayList<CartNow> mListCartNowFinished = new ArrayList<>();
 
     private Context context;
     FragmentFinishedOrderCartBinding binding;
@@ -36,8 +36,6 @@ public class FinishedOrderCartFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
@@ -52,11 +50,11 @@ public class FinishedOrderCartFragment extends Fragment {
         if(listCartNow!= null){
             for(CartNow value : listCartNow){
                 if(value.isFinish() == true){
-                    mListCartNow.add(value);
+                    mListCartNowFinished.add(value);
                 }
             }
         }
-        mAdapter = new FinishOrderCartAdapter(mListCartNow);
+        mAdapter = new FinishOrderCartAdapter(mListCartNowFinished);
         binding.rcvFinishedOrderCart.setAdapter(mAdapter);
     }
 }

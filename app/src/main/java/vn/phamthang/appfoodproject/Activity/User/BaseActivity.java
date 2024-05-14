@@ -1,12 +1,18 @@
 package vn.phamthang.appfoodproject.Activity.User;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -26,12 +32,14 @@ public class BaseActivity extends AppCompatActivity {
     public static FirebaseAuth mAuth;
     public static FirebaseDatabase database;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         database = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
+        initListVoucher();
 
         getWindow().setStatusBarColor(getResources().getColor(R.color.white));
     }
@@ -41,6 +49,27 @@ public class BaseActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    private void initListVoucher() {
+        listVoucher.clear();
+        DatabaseReference voucherRef = database.getReference("Voucher");
+        voucherRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                        Voucher voucher = snapshot1.getValue(Voucher.class);
+                        listVoucher.add(voucher);
+                    }
+                    Log.d("LISTVOCHER",listVoucher.toString());
+                }
 
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 
 }

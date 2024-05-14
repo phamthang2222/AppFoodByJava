@@ -1,11 +1,13 @@
 package vn.phamthang.appfoodproject.Activity.Admin;
 
 import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.listCart;
+import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.listCartNow;
 import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.listUser;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import vn.phamthang.appfoodproject.Adapter.ViewPagerAdapter.ChartViewPagerAdapter;
@@ -29,6 +31,8 @@ public class FoodOrderRealTimeActivity extends AppCompatActivity {
 
     private void initView() {
         binding.btBack.setOnClickListener(v -> {
+
+            startActivity(new Intent(this,StatisticalActivity.class));
             finish();
         });
 
@@ -37,5 +41,7 @@ public class FoodOrderRealTimeActivity extends AppCompatActivity {
         chartViewPagerAdapter.addFragment(new OrderCartFragment(this), "Đang chờ");
         chartViewPagerAdapter.addFragment(new FinishedOrderCartFragment(this), "Đã hoàn thành");
         binding.viewPager.setAdapter(chartViewPagerAdapter);
+
+
     }
 }

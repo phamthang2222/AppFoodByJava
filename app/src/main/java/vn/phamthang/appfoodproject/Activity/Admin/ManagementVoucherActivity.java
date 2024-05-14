@@ -33,7 +33,6 @@ public class ManagementVoucherActivity extends BaseActivity {
 
         initView();
         initListVoucher();
-//        initData();
     }
 
     private void initData() {

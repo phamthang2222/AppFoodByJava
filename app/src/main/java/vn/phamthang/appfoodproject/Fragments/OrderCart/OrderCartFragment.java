@@ -5,6 +5,7 @@ import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.lis
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,7 +25,8 @@ public class OrderCartFragment extends Fragment {
 
     private RecyclerView.Adapter mAdapter;
     private Context context;
-    private  ArrayList<CartNow> mListCartNow = new ArrayList<>();
+    public static ArrayList<CartNow> mListCartNow = new ArrayList<>();
+
     FragmentOrderCartBinding binding;
 
     public OrderCartFragment(Context context) {
@@ -41,15 +43,17 @@ public class OrderCartFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentOrderCartBinding.inflate(getLayoutInflater());
         initData();
+
         return binding.getRoot();
     }
+
 
     private void initData() {
         binding.rcvOrderCart.setLayoutManager(new GridLayoutManager(context, 1));
 
-        if(listCartNow!= null){
-            for(CartNow value : listCartNow){
-                if(value.isFinish() == false){
+        if (listCartNow != null) {
+            for (CartNow value : listCartNow) {
+                if (value.isFinish() == false) {
                     mListCartNow.add(value);
                 }
             }
@@ -57,5 +61,6 @@ public class OrderCartFragment extends Fragment {
 
         mAdapter = new OrderCartAdapter(mListCartNow);
         binding.rcvOrderCart.setAdapter(mAdapter);
+
     }
 }

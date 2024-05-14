@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,18 +24,19 @@ import vn.phamthang.appfoodproject.Objects.Cart;
 import vn.phamthang.appfoodproject.Helper.ManagmentCart;
 import vn.phamthang.appfoodproject.Interface.ChangeNumberItemsListener;
 import vn.phamthang.appfoodproject.Objects.CartNow;
+import vn.phamthang.appfoodproject.Objects.Voucher;
 import vn.phamthang.appfoodproject.databinding.ActivityCartBinding;
 
 public class CartActivity extends BaseActivity {
 
     ActivityCartBinding binding;
     private RecyclerView.Adapter adapter;
-    private ManagmentCart managmentCart ;
+    private ManagmentCart managmentCart;
     private double tax;
     private double total;
 
-    private String idUser="";
-    private LocalDate date= null;
+    private String idUser = "";
+    private LocalDate date = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,7 @@ public class CartActivity extends BaseActivity {
         setContentView(binding.getRoot());
 
         managmentCart = new ManagmentCart(this);
-        
+
         setVariable();
         setInformationUser();
         calculatorCart();
@@ -52,13 +55,13 @@ public class CartActivity extends BaseActivity {
     }
 
     private void initList() {
-        if(managmentCart.getListCart().isEmpty()){
+        if (managmentCart.getListCart().isEmpty()) {
             binding.tvEmpty.setVisibility(View.VISIBLE);
             binding.scrollViewCart.setVisibility(View.GONE);
-        }else{
+        } else {
             binding.tvEmpty.setVisibility(View.GONE);
             binding.scrollViewCart.setVisibility(View.VISIBLE);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             binding.rcvCartView.setLayoutManager(linearLayoutManager);
             adapter = new CartAdapter(managmentCart.getListCart(), this, new ChangeNumberItemsListener() {
                 @Override
@@ -67,22 +70,31 @@ public class CartActivity extends BaseActivity {
                 }
             });
             binding.rcvCartView.setAdapter(adapter);
+            binding.btVoucher.setOnClickListener(v -> {
+                calculatorCart();
+            });
         }
 
     }
 
     private void calculatorCart() {
         double percentTax = 0.02; // 2%
-        double delivery  = 10.0; // 10$
+        double delivery = 10.0; // 10$
+        double voucherValue = 0.0;
+        String stringValueCode = binding.edtVoucher.getText().toString().trim();
+        if(!stringValueCode.isEmpty()){
+            voucherValue = checkVoucher(stringValueCode);
+        }
 
-        tax = Math.round(managmentCart.getTotalFee()*percentTax*100.0)/100.0;
-        double itemTotal = Math.round((managmentCart.getTotalFee())*100.0)/100.0;
-        total = Math.round((managmentCart.getTotalFee() + tax + delivery)*100.0)/100.0;
+        tax = Math.round(managmentCart.getTotalFee() * percentTax * 100.0) / 100.0;
+        double itemTotal = Math.round((managmentCart.getTotalFee() - managmentCart.getTotalFee()* voucherValue/100) * 100.0) / 100.0;
+        total = Math.round((itemTotal + tax + delivery) * 100.0) / 100.0;
 
-        binding.tvTotalFee.setText("$"+itemTotal);
-        binding.tvDelivery.setText("$"+delivery);
-        binding.tvTax.setText("$"+tax+" ("+percentTax*100+"%)");
-        binding.tvTotalCart.setText("$"+total);
+        binding.tvTotalFee.setText("$" + itemTotal);
+        binding.tvDelivery.setText("$" + delivery);
+        binding.tvTax.setText("$" + tax + " (" + percentTax * 100 + "%)");
+        binding.tvTotalCart.setText("$" + total);
+        binding.tvVoucher.setText(voucherValue+"%");
     }
 
     private void setVariable() {
@@ -93,20 +105,21 @@ public class CartActivity extends BaseActivity {
             startActivity(new Intent(this, ProfileActivity.class));
             finish();
         });
-        binding.btnFinish.setOnClickListener(v ->{
+        binding.btnFinish.setOnClickListener(v -> {
             informationCart();
-            Intent intent = new Intent(this,DoneActivity.class);
-            intent.putExtra("date",date.toString());
+            Intent intent = new Intent(this, DoneActivity.class);
+            intent.putExtra("date", date.toString());
 
             startActivity(intent);
             finish();
         });
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-               date = LocalDate.now();
+            date = LocalDate.now();
         }
     }
-    private void setInformationUser(){
+
+    private void setInformationUser() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -132,6 +145,7 @@ public class CartActivity extends BaseActivity {
                         binding.tvUserNumberPhone.setText(phoneNumber);
                     }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
@@ -139,7 +153,8 @@ public class CartActivity extends BaseActivity {
             });
         }
     }
-    private void informationCart(){
+
+    private void informationCart() {
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
@@ -150,12 +165,34 @@ public class CartActivity extends BaseActivity {
             database.getReference("Cart").child(userId).child(cartId).setValue(cart);
 
             if (currentUser != null) {
-                CartNow cartNow = new CartNow(userId, total,managmentCart.getListCart(), date.toString(),false);
+                CartNow cartNow = new CartNow(userId, total, managmentCart.getListCart(), date.toString(), false);
                 cartId = database.getReference("Cart").child(userId).push().getKey();
                 database.getReference("CartNow").child(userId).child(cartId).setValue(cartNow);
             }
         }
-
-
     }
+
+    private Double checkVoucher(String code) {
+        String value;
+        double valueVoucher = 0.0;
+        int count = 0;
+        for (Voucher data : listVoucher) {
+            if (data.getCode().equals(code)) {
+                count++;
+                value = data.getValue();
+                valueVoucher = Double.parseDouble(value);
+
+            }
+        }
+        if(count==0){
+            Toast.makeText(this, "Mã không tồn tại!", Toast.LENGTH_SHORT).show();
+
+        }else{
+            Toast.makeText(this, "Áp mã thành công", Toast.LENGTH_SHORT).show();
+        }
+
+        return valueVoucher;
+    }
+
+
 }

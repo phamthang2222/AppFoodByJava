@@ -1,5 +1,9 @@
 package vn.phamthang.appfoodproject.Adapter.ViewPagerAdapter;
 
+import android.content.Context;
+import android.util.SparseArray;
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -7,6 +11,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
+
+import vn.phamthang.appfoodproject.Fragments.OrderCart.FinishedOrderCartFragment;
+import vn.phamthang.appfoodproject.Fragments.OrderCart.OrderCartFragment;
 
 public class ChartViewPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -39,4 +46,5 @@ public class ChartViewPagerAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         return fragmentTitle.get(position);
     }
+
 }

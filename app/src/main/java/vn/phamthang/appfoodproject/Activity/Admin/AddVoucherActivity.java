@@ -44,7 +44,6 @@ public class AddVoucherActivity extends BaseActivity {
 //        Double valueVoucher = Double.valueOf(value);
 
         Voucher newVoucher = new Voucher(idVoucher, code, value);
-
         database.getReference("Voucher").child(idVoucher).setValue(newVoucher);
 
     }

@@ -2,8 +2,10 @@ package vn.phamthang.appfoodproject.Activity.Admin;
 
 
 import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.listCart;
+import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.listCartNow;
 import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.listUser;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -32,6 +34,8 @@ public class OverallStatisticsActivity extends BaseActivity {
         binding.btBack.setOnClickListener(v -> {
             listCart.clear();
             listUser.clear();
+            listCartNow.clear();
+            startActivity(new Intent(this,StatisticalActivity.class));
             finish();
         });
 
@@ -40,6 +44,7 @@ public class OverallStatisticsActivity extends BaseActivity {
         chartViewPagerAdapter.addFragment(new PieCharFragment(), "Doanh thu theo người mua");
         chartViewPagerAdapter.addFragment(new BarChartFragment(), "Doanh thu theo tháng");
         binding.s1.setAdapter(chartViewPagerAdapter);
+
 
     }
 
