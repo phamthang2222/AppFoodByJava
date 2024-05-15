@@ -1,7 +1,6 @@
-package vn.phamthang.appfoodproject.Fragments.OrderCart;
+package vn.phamthang.appfoodproject.Helper.OrderCart;
 
 import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.listCartNow;
-import static vn.phamthang.appfoodproject.Fragments.OrderCart.OrderCartFragment.mListCartNow;
 
 import android.content.Context;
 import android.os.Bundle;

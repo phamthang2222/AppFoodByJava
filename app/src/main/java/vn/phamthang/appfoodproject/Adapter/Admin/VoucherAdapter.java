@@ -27,7 +27,10 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.viewHold
     public VoucherAdapter(ArrayList<Voucher> mListVoucher) {
         this.mListVoucher = mListVoucher;
     }
-
+    public void setVoucherList(ArrayList<Voucher> listVoucher) {
+        this.mListVoucher = listVoucher;
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override

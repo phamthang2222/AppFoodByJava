@@ -220,19 +220,19 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btChangePassword"
+                style="@android:style/Widget.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/red_button_background"
-                android:textColor="@color/white"
                 android:padding="12dp"
                 android:paddingStart="25dp"
                 android:paddingEnd="25dp"
-                style="@android:style/Widget.Button"
+                android:text="Đổi mật khẩu"
+                android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:text="Đổi mật khẩu"
-                android:layout_marginEnd="20dp"
-                />
+                android:visibility="gone" />
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btUpdate"
                 android:layout_width="wrap_content"

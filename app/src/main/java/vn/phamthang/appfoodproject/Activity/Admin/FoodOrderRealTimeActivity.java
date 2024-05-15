@@ -1,9 +1,5 @@
 package vn.phamthang.appfoodproject.Activity.Admin;
 
-import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.listCart;
-import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.listCartNow;
-import static vn.phamthang.appfoodproject.Activity.Admin.StatisticalActivity.listUser;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
@@ -11,11 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import vn.phamthang.appfoodproject.Adapter.ViewPagerAdapter.ChartViewPagerAdapter;
-import vn.phamthang.appfoodproject.Fragments.Chart.BarChartFragment;
-import vn.phamthang.appfoodproject.Fragments.Chart.PieCharFragment;
-import vn.phamthang.appfoodproject.Fragments.OrderCart.FinishedOrderCartFragment;
-import vn.phamthang.appfoodproject.Fragments.OrderCart.OrderCartFragment;
-import vn.phamthang.appfoodproject.R;
+import vn.phamthang.appfoodproject.Helper.OrderCart.FinishedOrderCartFragment;
+import vn.phamthang.appfoodproject.Helper.OrderCart.OrderCartFragment;
 import vn.phamthang.appfoodproject.databinding.ActivityFoodOrderRealTimeBinding;
 
 public class FoodOrderRealTimeActivity extends AppCompatActivity {

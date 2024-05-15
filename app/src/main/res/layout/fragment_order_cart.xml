@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_gray"
-    tools:context=".Fragments.OrderCart.OrderCartFragment">
+    tools:context=".Helper.OrderCart.OrderCartFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvOrderCart"

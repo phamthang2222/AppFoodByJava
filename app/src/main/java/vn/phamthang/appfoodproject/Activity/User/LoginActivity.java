@@ -10,8 +10,8 @@ import vn.phamthang.appfoodproject.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends BaseActivity {
     ActivityLoginBinding binding;
-//    private String TKadmin = "admin@food.vn";
-    private String TKadmin = "t1@gmail.com";
+    private String TKadmin = "admin@food.vn";
+//    private String TKadmin = "t1@gmail.com";
     private String MKadmin = "123456";
 
     @Override
