@@ -19,10 +19,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import vn.phamthang.appfoodproject.Helper.OrderCart.ItemClickEvent;
+import vn.phamthang.appfoodproject.Objects.Cart;
 import vn.phamthang.appfoodproject.Objects.CartNow;
 import vn.phamthang.appfoodproject.Objects.User;
 import vn.phamthang.appfoodproject.R;
@@ -47,7 +51,7 @@ public class OrderCartAdapter extends RecyclerView.Adapter<OrderCartAdapter.view
 
     @Override
     public void onBindViewHolder(@NonNull OrderCartAdapter.viewHolder holder, @SuppressLint("RecyclerView") int position) {
-
+        CartNow cartNow = mListCartNow.get(position);
         ItemOrderInCartAdapter itemOrderInCartAdapter = new ItemOrderInCartAdapter(mListCartNow.get(position).getFoodsList());
 
         holder.tvUserName.setText(userName(mListCartNow.get(position).getId()));
@@ -59,8 +63,9 @@ public class OrderCartAdapter extends RecyclerView.Adapter<OrderCartAdapter.view
         holder.btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListCartNow.get(position).setFinish(true);
-                mListCartNow.remove(position);
+                cartNow.setFinish(true);
+                EventBus.getDefault().post(new ItemClickEvent(cartNow));
+                mListCartNow.remove(cartNow);
                 notifyDataSetChanged();
             }
         });

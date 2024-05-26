@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import vn.phamthang.appfoodproject.Adapter.Admin.OrderCartAdapter;
@@ -23,10 +25,9 @@ import vn.phamthang.appfoodproject.databinding.FragmentOrderCartBinding;
 
 public class OrderCartFragment extends Fragment {
 
-    private RecyclerView.Adapter mAdapter;
+    private OrderCartAdapter mAdapter;
     private Context context;
     public static ArrayList<CartNow> mListCartNow = new ArrayList<>();
-
     FragmentOrderCartBinding binding;
 
     public OrderCartFragment(Context context) {
@@ -54,13 +55,43 @@ public class OrderCartFragment extends Fragment {
         if (listCartNow != null) {
             for (CartNow value : listCartNow) {
                 if (value.isFinish() == false) {
-                    mListCartNow.add(value);
+                    if (isCheckNow(value.getDate(), getOrderToday())) {
+                        mListCartNow.add(value);
+
+                    }
                 }
             }
         }
 
         mAdapter = new OrderCartAdapter(mListCartNow);
         binding.rcvOrderCart.setAdapter(mAdapter);
+
+    }
+
+    private int getOrderToday() {
+        LocalDate currentDate = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            currentDate = LocalDate.now();
+        }
+        int day = 0;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            day = currentDate != null ? currentDate.getDayOfMonth() : -1;
+        }
+        return day;
+    }
+
+    private boolean isCheckNow(String dateStringOfCart, int dayNow) {
+        LocalDate date = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            date = LocalDate.parse(dateStringOfCart, DateTimeFormatter.ISO_LOCAL_DATE);
+            int day = date.getDayOfMonth();
+            if (day == dayNow) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
 
     }
 }
