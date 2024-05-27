@@ -20,7 +20,6 @@ import vn.phamthang.appfoodproject.databinding.ActivityOverallStatisticsBinding;
 public class OverallStatisticsActivity extends BaseActivity {
     ActivityOverallStatisticsBinding binding;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

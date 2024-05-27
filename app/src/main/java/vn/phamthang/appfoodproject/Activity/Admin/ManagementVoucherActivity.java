@@ -62,7 +62,6 @@ public class ManagementVoucherActivity extends AppCompatActivity {
 
     private void initListVoucher() {
         listVoucher = new ArrayList<>();
-        binding.progressBar3.setVisibility(View.VISIBLE);
         listVoucher.clear();
         DatabaseReference voucherRef = database.getReference("Voucher");
         voucherRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -73,9 +72,7 @@ public class ManagementVoucherActivity extends AppCompatActivity {
                         Voucher voucher = snapshot1.getValue(Voucher.class);
                         listVoucher.add(voucher);
                     }
-                    Log.d("LISTVOCHER", listVoucher.toString());
                     initData();
-                    binding.progressBar3.setVisibility(View.GONE);
                 }
             }
 

@@ -13,6 +13,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 
 import vn.phamthang.appfoodproject.Activity.User.BaseActivity;
@@ -31,6 +33,10 @@ public class StatisticalActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityStatisticalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        listUser.clear();
+        listCartNow.clear();
+        listCart.clear();
 
         initData();
         setVariable();

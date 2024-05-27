@@ -31,7 +31,6 @@ public class FinishedOrderCartFragment extends Fragment {
 
     private RecyclerView.Adapter mAdapter;
     public ArrayList<CartNow> mListCartNowFinished = new ArrayList<>();
-
     private Context context;
     FragmentFinishedOrderCartBinding binding;
     private static final String TAG = "FinishedOrderCartFragme";

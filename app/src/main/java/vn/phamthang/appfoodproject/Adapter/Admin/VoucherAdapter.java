@@ -49,7 +49,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.viewHold
             mListVoucher.remove(position);
             updateVoucherInFireBase(mListVoucher);
             notifyDataSetChanged();
-            Toast.makeText(context, "Xóa Vouch", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Xóa Voucher", Toast.LENGTH_SHORT).show();
         });
 
     }
