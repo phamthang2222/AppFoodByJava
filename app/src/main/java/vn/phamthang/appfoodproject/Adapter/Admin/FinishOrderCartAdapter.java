@@ -40,8 +40,8 @@ public class FinishOrderCartAdapter extends RecyclerView.Adapter<FinishOrderCart
     public void onBindViewHolder(@NonNull FinishOrderCartAdapter.viewHolder holder, int position) {
         ItemOrderInCartAdapter itemOrderInCartAdapter = new ItemOrderInCartAdapter(mListCartNow.get(position).getFoodsList());
 
-        holder.tvUserName.setText(userName(mListCartNow.get(position).getId()));
-        holder.tvUserAddress.setText(userAddress(mListCartNow.get(position).getId()));
+        holder.tvUserName.setText(userName(mListCartNow.get(position).getIdUser()));
+        holder.tvUserAddress.setText(userAddress(mListCartNow.get(position).getIdUser()));
         holder.tvTime.setText(mListCartNow.get(position).getDate());
         holder.tvCartPrice.setText(mListCartNow.get(position).getTotalPrice()+"$");
         holder.rcv.setLayoutManager(new GridLayoutManager(context, 1));

@@ -57,7 +57,6 @@ public class OrderCartFragment extends Fragment {
                 if (value.isFinish() == false) {
                     if (isCheckNow(value.getDate(), getOrderToday())) {
                         mListCartNow.add(value);
-
                     }
                 }
             }

@@ -111,7 +111,6 @@ public class StatisticalActivity extends BaseActivity {
 
                     }
                 });
-//                Toast.makeText(StatisticalActivity.this, "thành công", Toast.LENGTH_SHORT).show();
 
             }
 

@@ -198,6 +198,7 @@
                     android:layout_height="match_parent"
                     android:text="Đăng kí tại đây"
                     android:textColor="@color/red"
+
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>

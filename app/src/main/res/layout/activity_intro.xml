@@ -70,6 +70,9 @@
         android:textStyle="bold"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
+        android:padding="10dp"
+
+        android:background="@drawable/ripple_effect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -80,6 +83,8 @@
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="20dp"
         android:text="Đăng nhập"
+        android:background="@drawable/ripple_effect"
+        android:padding="10dp"
         android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold"

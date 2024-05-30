@@ -164,9 +164,19 @@ public class CartActivity extends BaseActivity {
             String cartId = database.getReference("Cart").child(userId).push().getKey();
             database.getReference("Cart").child(userId).child(cartId).setValue(cart);
 
+//            if (currentUser != null) {
+//                CartNow cartNow = new CartNow(userId,cartId, total, managmentCart.getListCart(), date.toString(), false);
+//                cartId = database.getReference("Cart").child(userId).push().getKey();
+//                database.getReference("CartNow").child(userId).child(cartId).setValue(cartNow);
+//            }
             if (currentUser != null) {
-                CartNow cartNow = new CartNow(userId, total, managmentCart.getListCart(), date.toString(), false);
+                // Sinh ra key tự động cho cartId
                 cartId = database.getReference("Cart").child(userId).push().getKey();
+
+                // Tạo đối tượng CartNow với cartId đã được sinh ra
+                CartNow cartNow = new CartNow(userId, cartId, total, managmentCart.getListCart(), date.toString(), false);
+
+                // Lưu đối tượng CartNow vào Firebase Database
                 database.getReference("CartNow").child(userId).child(cartId).setValue(cartNow);
             }
         }
@@ -190,7 +200,6 @@ public class CartActivity extends BaseActivity {
         }else{
             Toast.makeText(this, "Áp mã thành công", Toast.LENGTH_SHORT).show();
         }
-
         return valueVoucher;
     }
 

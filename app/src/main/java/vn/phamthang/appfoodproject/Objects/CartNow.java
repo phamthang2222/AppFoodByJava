@@ -3,7 +3,8 @@ package vn.phamthang.appfoodproject.Objects;
 import java.util.List;
 
 public class CartNow {
-    private String id;
+    private String idUser;
+    private String idCartNow;
     private Double totalPrice;
     private List<Foods> foodsList;
     private String date;
@@ -14,20 +15,45 @@ public class CartNow {
     public CartNow() {
     }
 
-    public CartNow(String id, Double totalPrice, List<Foods> foodsList, String date, Boolean isFinish) {
-        this.id = id;
+//    public CartNow(String id, Double totalPrice, List<Foods> foodsList, String date, Boolean isFinish) {
+//        this.id = id;
+//        this.totalPrice = totalPrice;
+//        this.foodsList = foodsList;
+//        this.date = date;
+//        this.isFinish = false;
+//    }
+
+    public CartNow(String idUser, String idCartNow, Double totalPrice, List<Foods> foodsList, String date, boolean isFinish) {
+        this.idUser = idUser;
+        this.idCartNow = idCartNow;
         this.totalPrice = totalPrice;
         this.foodsList = foodsList;
         this.date = date;
-        this.isFinish = false;
+        this.isFinish = isFinish;
     }
 
-    public String getId() {
-        return id;
+//    public String getId() {
+//        return id;
+//    }
+//
+//    public void setId(String id) {
+//        this.id = id;
+//    }
+
+    public String getIdUser() {
+        return idUser;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getIdCartNow() {
+        return idCartNow;
+    }
+
+    public void setIdCartNow(String idCartNow) {
+        this.idCartNow = idCartNow;
     }
 
     public Double getTotalPrice() {
@@ -63,14 +89,5 @@ public class CartNow {
         isFinish = finish;
     }
 
-    @Override
-    public String toString() {
-        return "CartNow{" +
-                "id='" + id + '\'' +
-                ", totalPrice=" + totalPrice +
-                ", foodsList=" + foodsList +
-                ", date='" + date + '\'' +
-                ", isFinish=" + isFinish +
-                '}';
-    }
+
 }

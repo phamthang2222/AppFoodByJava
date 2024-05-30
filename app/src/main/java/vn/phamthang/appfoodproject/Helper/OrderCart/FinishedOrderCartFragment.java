@@ -20,6 +20,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import vn.phamthang.appfoodproject.Adapter.Admin.FinishOrderCartAdapter;
@@ -33,7 +35,7 @@ public class FinishedOrderCartFragment extends Fragment {
     public ArrayList<CartNow> mListCartNowFinished = new ArrayList<>();
     private Context context;
     FragmentFinishedOrderCartBinding binding;
-    private static final String TAG = "FinishedOrderCartFragme";
+    private static final String TAG = "FinishedOrderCartFragment";
 
     public FinishedOrderCartFragment ( Context context){
         this.context = context;
@@ -94,13 +96,16 @@ public class FinishedOrderCartFragment extends Fragment {
     }
     private void initData() {
         binding.rcvFinishedOrderCart.setLayoutManager(new GridLayoutManager(context, 1));
-//        if(listCartNow!= null){
-//            for(CartNow value : listCartNow){
-//                if(value.isFinish() == true){
-//                    mListCartNowFinished.add(value);
-//                }
-//            }
-//        }
+        if(listCartNow!= null){
+            for(CartNow value : listCartNow){
+                if(value.isFinish() == true){
+                    if (isCheckNow(value.getDate(), getOrderToday())) {
+
+                        mListCartNowFinished.add(value);
+                    }
+                }
+            }
+        }
         mAdapter = new FinishOrderCartAdapter(mListCartNowFinished);
         binding.rcvFinishedOrderCart.setAdapter(mAdapter);
     }
@@ -110,5 +115,32 @@ public class FinishedOrderCartFragment extends Fragment {
         mListCartNowFinished.add(data);
         mAdapter = new FinishOrderCartAdapter(mListCartNowFinished);
         binding.rcvFinishedOrderCart.setAdapter(mAdapter);
+        EventBus.getDefault().removeStickyEvent(event);
+    }
+    private int getOrderToday() {
+        LocalDate currentDate = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            currentDate = LocalDate.now();
+        }
+        int day = 0;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            day = currentDate != null ? currentDate.getDayOfMonth() : -1;
+        }
+        return day;
+    }
+
+    private boolean isCheckNow(String dateStringOfCart, int dayNow) {
+        LocalDate date = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            date = LocalDate.parse(dateStringOfCart, DateTimeFormatter.ISO_LOCAL_DATE);
+            int day = date.getDayOfMonth();
+            if (day == dayNow) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+
     }
 }

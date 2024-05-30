@@ -16,8 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -37,7 +40,7 @@ public class OrderCartAdapter extends RecyclerView.Adapter<OrderCartAdapter.view
     private ArrayList<CartNow> mListCartNow;
 
 
-    public OrderCartAdapter(ArrayList<CartNow> mListCartNow ) {
+    public OrderCartAdapter(ArrayList<CartNow> mListCartNow) {
         this.mListCartNow = mListCartNow;
     }
 
@@ -54,20 +57,18 @@ public class OrderCartAdapter extends RecyclerView.Adapter<OrderCartAdapter.view
         CartNow cartNow = mListCartNow.get(position);
         ItemOrderInCartAdapter itemOrderInCartAdapter = new ItemOrderInCartAdapter(mListCartNow.get(position).getFoodsList());
 
-        holder.tvUserName.setText(userName(mListCartNow.get(position).getId()));
-        holder.tvUserAddress.setText(userAddress(mListCartNow.get(position).getId()));
+        holder.tvUserName.setText(userName(mListCartNow.get(position).getIdUser()));
+        holder.tvUserAddress.setText(userAddress(mListCartNow.get(position).getIdUser()));
         holder.tvTime.setText(mListCartNow.get(position).getDate());
         holder.tvCartPrice.setText(mListCartNow.get(position).getTotalPrice() + "$");
         holder.rcv.setLayoutManager(new GridLayoutManager(context, 1));
         holder.rcv.setAdapter(itemOrderInCartAdapter);
-        holder.btnFinish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cartNow.setFinish(true);
-                EventBus.getDefault().post(new ItemClickEvent(cartNow));
-                mListCartNow.remove(cartNow);
-                notifyDataSetChanged();
-            }
+        holder.btnFinish.setOnClickListener(v -> {
+            cartNow.setFinish(true);
+            EventBus.getDefault().post(new ItemClickEvent(cartNow));
+            updateOrderStatus(cartNow.getIdUser(), cartNow.getIdCartNow(), true);
+            mListCartNow.remove(cartNow);
+            notifyDataSetChanged();
         });
 
     }
@@ -115,17 +116,29 @@ public class OrderCartAdapter extends RecyclerView.Adapter<OrderCartAdapter.view
         }
         return address;
     }
-    private void updateListOrderToFireBase(CartNow cart,String userId,String cartId){
-        Map<String, Object> updateData = new HashMap<>();
-        updateData.put(cartId, cart);
 
-        DatabaseReference cartNowRef = database.getReference("CartNow").child(userId);
-        cartNowRef.updateChildren(updateData).addOnSuccessListener(new OnSuccessListener<Void>() {
+    //    private void updateListOrderToFireBase(CartNow cart,String userId,String cartId){
+//        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+//
+//
+//    }
+    public void updateOrderStatus(String userId, String orderId, boolean isFinish) {
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseRef = database.getReference();
+
+        // Tạo đường dẫn đến đơn hàng cụ thể
+        DatabaseReference orderRef = databaseRef.child("CartNow").child(userId).child(orderId);
+        // Cập nhật giá trị isFinish
+        orderRef.child("finish").setValue(isFinish).addOnCompleteListener(new OnCompleteListener<Void>() {
+
             @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(context, "Đã hoàn thành", Toast.LENGTH_SHORT).show();
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(context, "Cập nhật trạng thái đơn hàng thành công", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Lỗi cập nhật trạng thái đơn hàng", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
     }
 }
